@@ -119,6 +119,9 @@ def Tags(request):
 def About(request):
     post = Post.objects.filter(post_type='about').first()
     if post:
+        a = get_toc(post.body)
+        post.body = a['body']
+        post.toc = a['toc']
         post.increase_views() # 调用 increase_views 方法，统计访问量
         return render(request, 'blog/about.html', context={'post': post})
     else:
@@ -128,6 +131,9 @@ def About(request):
 def Project(request):
     post = Post.objects.filter(post_type='project').first()
     if post:
+        a = get_toc(post.body)
+        post.body = a['body']
+        post.toc = a['toc']
         post.increase_views() # 调用 increase_views 方法，统计访问量
         return render(request, 'blog/project.html', context={'post': post})
     else:
