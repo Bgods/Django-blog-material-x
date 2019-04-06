@@ -99,8 +99,9 @@ python manage.py runserver 127.0.0.1:9000
 
 1. 代码高亮问题
 
-本项目使用的是ckeditor富文本编辑器，代码高亮需要用到 prism 插件，所以安装好依赖之后，把prism.zip解压出来的文件复制到ckeditor包的安装目录；
-比如我的用的是venv/lib/python3.7/site-packages/ckeditor/static/ckeditor/ckeditor/plugins/
+本项目使用的是ckeditor富文本编辑器，代码高亮需要用到 prism 插件，所以安装好依赖之后，把prism.zip解压出来的文件复制到ckeditor包的安装目录。
+
+比如我这里插件目录是：venv/lib/python3.7/site-packages/ckeditor/static/ckeditor/ckeditor/plugins/
 
 2. 头像logo
 
