@@ -5,7 +5,7 @@
 
 ## 使用方法
 
-由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，这里以本地环境为例。
+由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，使用虚拟环境，这里以本地环境为例。
 
 ### 下载源代码到本地
 
@@ -62,4 +62,30 @@ SITE_CONFIGS = {
     </script>''',
 }
 ```
+### 安装依赖
+
+- 进入项目目录创建虚拟环境，安装依赖
+```bash
+cd Desktop/www # 进入项目目录
+virtualenv venv # 创建虚拟环境
+source venv/bin/activate # 激活虚拟环境
+pip install -r requirements.txt # 安装依赖
+```
+![](QQ20190406-160506.png)
+
+### 创建数据库
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+![](QQ20190406-161022.png)
+
+### 创建超级管理员账号
+
+```bash
+python manage.py createsuperuser
+```
+依次输入用户名，邮箱，密码
+![](QQ20190406-163309.png)
 
