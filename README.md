@@ -1,11 +1,17 @@
-# 说明
+## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。示例博客：[http://bgods.cn/](http://bgods.cn/)
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
+
+## 示例
+![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)
+
+
+
 
 ## 使用方法
 
 由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，使用虚拟环境，这里以本地环境为例。
-有任何疑问，或建议可以到我的博客 [http://bgods.cn/](http://bgods.cn/) 下留言
+有任何疑问，或建议可以到[我的博客](http://bgods.cn/)下留言
 
 ### 1、下载源代码到本地
 
