@@ -1,1 +1,65 @@
+# 说明
+
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
+示例博客：[http://bgods.cn/](http://bgods.cn/)
+
+## 使用方法
+
+由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，这里以本地环境为例。
+
+### 下载源代码到本地
+
+1. 使用git命令下载
+```bash
+git clone https://github.com/Bgods/Django-blog-material-x.git
+```
+2. 或者点击[下载到本地](https://github.com/Bgods/Django-blog-material-x/archive/master.zip)
+
+### 修改配置
+
+修改 www/www/settings.py 文件
+```python
+# 站点配置
+SITE_CONFIGS = {
+    'Name': 'Bgods', # 站点名称
+    'Title': '人生苦短,我用Python', # 站点标题
+
+    # 站点底部footer配置，请改为自己的，不需要的选项可以留空
+    'Footer': {
+        'Email': 'bgods@qq.com', # 邮箱
+        'Weibo': 'http://weibo.com/songzhilian22', # 新浪微博
+        'Music': 'https://music.163.com/#/user/home?id=1534745920', # 音乐地址
+        'Twitter': 'http://blog.csdn.net/songzhilian22', # Twitter
+        'GitHub': 'https://github.com/Bgods', # GitHub
+        'Beian': '粤ICP备17050010号', # 备案号
+    },
+
+    # 侧边栏网易云音乐插件配置
+    'Music': {
+        'home': 'https://music.163.com/#/user/home?id=1534745920', # 网易云用户主页，点击会跳转到你的主页
+        'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
+    },
+
+    # 第三方评论Gitalk插件配置，不需要评论的可以留空，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
+    'Gitalk': {
+        'clientID': '你的clientID', # Github Application clientID
+        'clientSecret': '你的clientSecret', # Github Application clientSecret
+        'repo': 'Github 仓库名', # 存储你评论 issue 的 Github 仓库名
+        'owner': 'Github 用户名', # Github 用户名
+        'admin': 'Github 用户名', # Github 用户名
+    },
+
+    # 百度统计代码，获取方法自行百度,不需要的话可以留空
+    'BaiduTj': '''
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?你的ID";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>''',
+}
+```
 
