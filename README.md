@@ -1,13 +1,13 @@
 # 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
-示例博客：[http://bgods.cn/](http://bgods.cn/)
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。示例博客：[http://bgods.cn/](http://bgods.cn/)
 
 ## 使用方法
 
 由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，使用虚拟环境，这里以本地环境为例。
+有任何疑问，或建议可以到我的博客 [http://bgods.cn/](http://bgods.cn/) 下留言
 
-### 下载源代码到本地
+### 1、下载源代码到本地
 
 1. 使用git命令下载
 ```bash
@@ -15,7 +15,7 @@ git clone https://github.com/Bgods/Django-blog-material-x.git
 ```
 2. 或者点击[下载到本地](https://github.com/Bgods/Django-blog-material-x/archive/master.zip)
 
-### 修改配置
+### 2、修改配置
 
 修改 www/www/settings.py 文件
 ```python
@@ -62,7 +62,7 @@ SITE_CONFIGS = {
     </script>''',
 }
 ```
-### 安装依赖
+### 3、安装依赖
 
 - 进入项目目录创建虚拟环境，安装依赖
 ```bash
@@ -73,7 +73,7 @@ pip install -r requirements.txt # 安装依赖
 ```
 ![](QQ20190406-160506.png)
 
-### 创建数据库
+### 4、创建数据库
 
 ```bash
 python manage.py makemigrations
@@ -81,11 +81,18 @@ python manage.py migrate
 ```
 ![](QQ20190406-161022.png)
 
-### 创建超级管理员账号
+### 5、创建超级管理员账号
 
 ```bash
 python manage.py createsuperuser
 ```
 依次输入用户名，邮箱，密码
 ![](QQ20190406-163309.png)
+
+### 6、运行
+```bash
+python manage.py runserver 127.0.0.1:9000
+```
+运行上面代码，本地访问 127.0.0.1:9000 就能看到你的站点了。
+
 
