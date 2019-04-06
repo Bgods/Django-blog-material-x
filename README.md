@@ -106,5 +106,3 @@ python manage.py runserver 127.0.0.1:9000
 
 站点logo都存放在 www/static/images/ 目录，自行替换
 
-
-
