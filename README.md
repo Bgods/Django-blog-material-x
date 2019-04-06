@@ -95,4 +95,13 @@ python manage.py runserver 127.0.0.1:9000
 ```
 运行上面代码，本地访问 127.0.0.1:9000 就能看到你的站点了。
 
+### 其他
+
+1. 代码高亮问题
+本项目使用的是ckeditor富文本编辑器，代码高亮需要用到 prism 插件，所以安装好依赖之后，把prism.zip解压出来的文件复制到ckeditor包的安装目录；
+比如我的用的是venv/lib/python3.7/site-packages/ckeditor/static/ckeditor/ckeditor/plugins/
+
+2. 头像logo
+站点logo都存放在 www/static/images/ 目录，自行替换
+
 
