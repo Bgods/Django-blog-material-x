@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}{{ SITE_CONFIGS.Name }} - 所有归档{% endblock %}
+
+{% block l_main %}
+<div class="l_main">
+    <article id="archive-page" class="post article white-box">
+        <section class="archive">
+        {% for year in years %}
+            <div class="archive-item archive-year mark"><h2>{{ year.year }}</h2><hr></div>
+            {% for post in post_list %}
+                {% if year.year == post.created_time.year %}
+                <div class="archive-item archive-post mark">
+                    <a href="{{ post.get_absolute_url }}">
+                        <time>{{ post.created_time | date:'m-d' }}</time>
+                        <span class="title">{{ post.title }}</span>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+        {% empty %}
+            找不到任何文章!
+        {% endfor %}
+        </section>
+    </article>
+</div>
+
+
+{% endblock %}

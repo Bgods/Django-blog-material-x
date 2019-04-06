@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}404错误{% endblock %}
+
+
+{% block l_main %}
+<div class="l_main">
+    <section class="post-list">
+        <div class="post-wrapper">
+            <article class="post reveal" data-sr-id="0" style="visibility: visible; opacity: 1; transition: all 0.25s ease 0s, opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                <div class="row">
+                    <div class="content text-center col-lg-5 my-lg-4" style="text-align: center">
+                        <h1>很抱歉，你访问的页面不存在</h1>
+                        <h3>可能是输入地址有误或该地址已被删除</h3>
+                    </div>
+                    <div class="errpic text-center col-lg-7 my-lg-4"><img src="{% static 'images/404.png' %}"></div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+{% endblock %}
