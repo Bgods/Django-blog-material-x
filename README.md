@@ -1,7 +1,8 @@
-# 说明
+## 说明
 
 本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
 
+## 示例
 ![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)
 
 
