@@ -173,7 +173,7 @@ SITE_CONFIGS = {
     'Name': 'Bgods', # 站点名称
     'Title': '人生苦短,我用Python', # 站点标题
 
-    # 站点底部footer配置
+    # 站点底部footer配置，请改为自己的，不需要的选项可以留空
     'Footer': {
         'Email': 'bgods@qq.com', # 邮箱
         'Weibo': 'http://weibo.com/songzhilian22', # 新浪微博
@@ -189,25 +189,24 @@ SITE_CONFIGS = {
         'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
     },
 
-    # 第三方评论Gitalk插件配置，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
+    # 第三方评论Gitalk插件配置，不需要评论的可以留空，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
     'Gitalk': {
-        'clientID': '*************', # Github Application clientID
-        'clientSecret': '*************', # Github Application clientSecret
-        'repo': '*************', # 存储你评论 issue 的 Github 仓库名
-        'owner': '*************', # Github 用户名
-        'admin': '*************', # Github 用户名
+        'clientID': '你的clientID', # Github Application clientID
+        'clientSecret': '你的clientSecret', # Github Application clientSecret
+        'repo': 'Github 仓库名', # 存储你评论 issue 的 Github 仓库名
+        'owner': 'Github 用户名', # Github 用户名
+        'admin': 'Github 用户名', # Github 用户名
     },
 
-    # 百度统计,代码获取方法自行百度,不需要的话可以留空
+    # 百度统计代码，获取方法自行百度,不需要的话可以留空
     'BaiduTj': '''
     <script>
     var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?*************";
+        hm.src = "https://hm.baidu.com/hm.js?你的ID";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
     </script>''',
-
 }
