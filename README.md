@@ -77,7 +77,7 @@ virtualenv venv # 创建虚拟环境
 source venv/bin/activate # 激活虚拟环境
 pip install -r requirements.txt # 安装依赖
 ```
-![](QQ20190406-160506.png)
+![](doc/install-packages.png)
 
 ### 4、创建数据库
 
@@ -85,7 +85,7 @@ pip install -r requirements.txt # 安装依赖
 python manage.py makemigrations
 python manage.py migrate
 ```
-![](QQ20190406-161022.png)
+![](doc/create-database.png)
 
 ### 5、创建超级管理员账号
 
@@ -93,7 +93,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 依次输入用户名，邮箱，密码
-![](QQ20190406-163309.png)
+![](doc/create-admin-user.png)
 
 ### 6、运行
 ```bash
