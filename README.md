@@ -1,11 +1,14 @@
-## 说明
-
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。后台使用ckeditor富文本编辑器，前端使用prism代码高亮插件，后台使用自带的admin。
-![](doc/admin-post-add.png)
-![](doc/admin-post-view.png)
-
 ## 示例
 ![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)
+
+
+## 说明
+
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
+后台使用自带的admin，使用ckeditor富文本编辑器，前端使用prism代码高亮插件。
+
+![](doc/admin-post-add.png)
+![](doc/admin-post-view.png)
 
 
 ## 使用方法
