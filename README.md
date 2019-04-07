@@ -8,8 +8,6 @@
 ![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)
 
 
-
-
 ## 使用方法
 
 由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，使用虚拟环境，这里以本地环境为例。
