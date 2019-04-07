@@ -1,5 +1,5 @@
 ## 示例
-![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)
+[![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)](http://bgods.cn/)
 
 
 ## 说明
