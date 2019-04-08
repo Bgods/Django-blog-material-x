@@ -24,19 +24,17 @@
         {% endif %}
 
     </div>
-    <p><a href="http://bgods.cn/" target="_blank">Copyright © 2013-2019 Bgods</a></p>
+    <p><a href="http://bgods.cn/" target="_blank">Copyright © 2013-<span id="NowYear" ></span> Bgods</a></p>
     {% if SITE_CONFIGS.Footer.Beian %}
     <p><a href="http://www.miitbeian.gov.cn/" rel="external nofollow" target="_blank">{{ SITE_CONFIGS.Footer.Beian }}</a></p>
     {% endif %}
 
 </footer>
 
-<script>function get_year(){var d = new Date();var x = document.getElementById("NowYear");x.innerHTML=d.getFullYear();}</script>
+<script>var x = document.getElementById("NowYear");x.innerHTML = new Date().getFullYear();</script>
 
 <!-- 百度统计代码 -->
 {% if SITE_CONFIGS.BaiduTj %}
 {{ SITE_CONFIGS.BaiduTj | safe }}
 {% endif %}
-
-
 
