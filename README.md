@@ -5,7 +5,6 @@
 ## 说明
 
 本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
-后台使用自带的admin，使用ckeditor富文本编辑器，前端使用prism代码高亮插件。
 
 ![](doc/admin-post-add.png)
 ![](doc/admin-post-view.png)
@@ -106,13 +105,8 @@ python manage.py runserver 127.0.0.1:9000
 
 ### 7、其他问题
 
-1. 代码高亮问题
 
-本项目使用的是ckeditor富文本编辑器，代码高亮需要用到 prism 插件，所以安装好依赖之后，把prism.zip解压出来的文件复制到ckeditor包的安装目录。
-
-比如我这里插件目录是：venv/lib/python3.7/site-packages/ckeditor/static/ckeditor/ckeditor/plugins/
-
-2. 头像logo
+1. 头像logo
 
 站点logo都存放在 www/static/images/ 目录，自行替换
 
