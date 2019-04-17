@@ -3,8 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from ckeditor_uploader.fields import RichTextUploadingField
-
+from mdeditor.fields import MDTextField
 
 # Create your models here.
 class Tag(models.Model):
@@ -27,7 +26,7 @@ class Post(models.Model):
     '''
     # 文章标题、目录与正文
     title = models.CharField(max_length=100, verbose_name=u'标题')
-    body = RichTextUploadingField(verbose_name=u'正文')
+    body = MDTextField(verbose_name=u'正文')
 
     # 文章创建时间和最近更新时间
     created_time = models.DateTimeField(verbose_name=u'创建时间')

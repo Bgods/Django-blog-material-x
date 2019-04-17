@@ -1,6 +1,5 @@
 Django==2.1.7
-django-ckeditor==5.6.1
-django-js-asset==1.2.2
+django-mdeditor 0.1.13
 gunicorn==19.9.0
 mysqlclient==1.4.2.post1
 Pillow==5.4.1

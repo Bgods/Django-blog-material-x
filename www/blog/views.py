@@ -9,7 +9,16 @@ from django.db.models.aggregates import Count
 import json,re
 from django.http import HttpResponse
 from www.views import page_not_found
+import markdown
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 
+def MD():
+    return markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        TocExtension(slugify=slugify),
+    ])
 
 # 博客文章列表页面
 class Index():
@@ -38,8 +47,13 @@ class Index():
 
 
     def get_data(self,post_list,page,request):
-        context = self.Pagination(post_list=post_list, page=page)
-        return render(request, 'blog/index.html', context=context)
+        post_list = self.Pagination(post_list=post_list, page=page)
+        for i in range(len(post_list)):
+            md = MD()
+            post_list[i].body = md.convert(post_list[i].body)
+            post_list[i].toc = md.toc
+
+        return render(request, 'blog/index.html', context={'post_list':post_list})
 
     # 高级分页扩展函数
     def Pagination(self, post_list, page):
@@ -47,26 +61,11 @@ class Index():
         paginator = Paginator(post_list, self.per_page)
         try:
             post_list = paginator.page(page)
-
         except PageNotAnInteger:
-            page = 1
             post_list = paginator.page(1)
         except EmptyPage:
             post_list = paginator.page(paginator.num_pages)
-
-        # 定义left_pages、right_pages两个列表，分别储存当前页面的前后页数，比如：总共有7页，当前页面是3，则分别储存[1,2]、[4,5,6,7]
-        left_pages = []
-        right_pages = []
-        for p in paginator.page_range:
-            if int(p) < int(page):
-                left_pages += [p]
-            if int(p) > int(page):
-                right_pages += [p]
-
-        return {'post_list': post_list,
-                'left_pages': left_pages[-2:],
-                'right_pages': right_pages[:2]
-                }
+        return post_list
 
 
 
@@ -75,9 +74,10 @@ class Index():
 class Detail(View):
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
-        a = get_toc(post.body)
-        post.body = a['body']
-        post.toc = a['toc']
+
+        md = MD()
+        post.body = md.convert(post.body)
+        post.toc = md.toc
 
         # 调用 increase_views 方法，统计访问量
         post.increase_views()
@@ -85,20 +85,6 @@ class Detail(View):
     def post(self, request):
         pass
 
-
-# 获取目录，提取body中的h标签
-def get_toc(body):
-    pattern = re.compile(r'<[hH][1-6]>.*?</[Hh][1-6]>')
-    h = pattern.findall(body)
-    toc =[]
-    for i in range(len(h)):
-        a = re.sub('>', ' id="toc-0{}">'.format(i+1), h[i], 1)
-        body = re.sub(h[i], a, body)
-        a = re.sub('id="', 'href="#', a, 1)
-        a = re.sub('<[Hh][1-6]', '<li class="toc-item toc-level-2"><a class="toc-link" ', a)
-        a = re.sub('</[Hh][1-6]>', '</a></li>', a)
-        toc.append(a)
-    return {'body': body, 'toc': ''.join(toc)}
 
 
 # 归档页面
@@ -119,9 +105,9 @@ def Tags(request):
 def About(request):
     post = Post.objects.filter(post_type='about').first()
     if post:
-        a = get_toc(post.body)
-        post.body = a['body']
-        post.toc = a['toc']
+        md = MD()
+        post.body = md.convert(post.body)
+        post.toc = md.toc
         post.increase_views() # 调用 increase_views 方法，统计访问量
         return render(request, 'blog/about.html', context={'post': post})
     else:
@@ -131,9 +117,9 @@ def About(request):
 def Project(request):
     post = Post.objects.filter(post_type='project').first()
     if post:
-        a = get_toc(post.body)
-        post.body = a['body']
-        post.toc = a['toc']
+        md = MD()
+        post.body = md.convert(post.body)
+        post.toc = md.toc
         post.increase_views() # 调用 increase_views 方法，统计访问量
         return render(request, 'blog/project.html', context={'post': post})
     else:

@@ -24,7 +24,7 @@ urlpatterns = [
     path('', views.Home.as_view(), name='home'),
 
     path('blog/', include('blog.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('mdeditor/', include('mdeditor.urls')),
 ]
 
 if settings.DEBUG:
