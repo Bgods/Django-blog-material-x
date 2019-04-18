@@ -1,0 +1,7 @@
+Django==2.1.7
+django-mdeditor==0.1.13
+gunicorn==19.9.0
+Markdown==3.1
+mysqlclient==1.4.2.post1
+Pillow==5.4.1
+pytz==2018.9

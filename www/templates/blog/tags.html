@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}{{ SITE_CONFIGS.Name }} - 所有标签{% endblock %}
+
+{% block l_main %}
+<div class="l_main">
+    <section class="post-list">
+        <div class="post-wrapper">
+            <article id="archive-page" class="post article white-box">
+                <section class="archive">
+                    <div class="archive-item archive-year mark"><h2>所有标签</h2><hr></div>
+                    <div class="archive-item archive-post mark">
+                        {% for tag in tags %}
+                        <a href="{% url 'blog:tags' tag.name %}"><time><i class="fas fa-tag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;{{ tag.name }}</time> <span class="title">({{ tag.num_posts }}) </span></a>
+
+                        {% endfor %}
+                    </div>
+                    <br>
+                </section>
+            </article>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

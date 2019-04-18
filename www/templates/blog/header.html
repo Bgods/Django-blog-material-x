@@ -1,0 +1,53 @@
+<div id="loading-bar-wrapper" style="display: none;">
+    <div id="loading-bar" class="pure" style="width: 100%;"></div>
+</div>
+<script>setLoadingBarProgress(20)</script>
+<header class="l_header pure">
+    <div class="wrapper">
+        <div class="nav-main container container--flex">
+            <a class="logo flat-box waves-effect waves-block" href="{% url 'blog:Index' %}">{{ SITE_CONFIGS.Name }}'s Blog</a>
+            <div class="menu">
+                <ul class="h-list">
+                    <li><a id="home" class="nav flat-box waves-effect waves-block" href="{% url 'home' %}"><i class="fas fa-home fa-fw"></i>&nbsp;主页</a></li>
+                    <li><a id="blog" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Index' %}"><i class="fas fa-rss fa-fw"></i>&nbsp;博客</a></li>
+                    <li><a id="blogtags" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Tags' %}"><i class="fas fa-tags fa-fw"></i>&nbsp;标签</a></li>
+                    <li><a id="blogarchives" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Archives' %}"><i class="fas fa-archive fa-fw"></i>&nbsp;归档</a></li>
+                    <li><a id="blogproject" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Project' %}"><i class="fas fa-flask fa-fw"></i>&nbsp;项目</a></li>
+                    <li><a id="blogabout" class="nav flat-box waves-effect waves-block" href="{% url 'blog:About' %}"><i class="fas fa-user fa-fw"></i>&nbsp;关于</a></li>
+                </ul>
+            </div>
+            <div class="m_search">
+                <form name="searchform" class="form u-search-form">
+                    <input type="text" class="input u-search-input" placeholder="搜索">
+                    <span class="icon"><i class="fas fa-search fa-fw"></i></span>
+                </form>
+            </div>
+            <ul class="switcher h-list">
+                <li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+                <li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+            </ul>
+        </div>
+
+        <div class="nav-sub container container--flex">
+            <a class="logo flat-box waves-effect waves-block"></a>
+            <ul class="switcher h-list">
+                <li class="s-comment"><a class="flat-btn fas fa-comments fa-fw waves-effect waves-button" href="javascript:void(0)"></a></li>
+                <li class="s-toc"><a class="flat-btn fas fa-list fa-fw waves-effect waves-button" href="javascript:void(0)"></a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<aside class="menu-phone">
+    <header>
+        <nav class="menu">
+            <ul>
+                <li><a id="home" class="nav flat-box waves-effect waves-block" href="{% url 'home' %}"><i class="fas fa-home fa-fw"></i>&nbsp;主页</a></li>
+                <li><a id="blog" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Index' %}"><i class="fas fa-rss fa-fw"></i>&nbsp;博客</a></li>
+                <li><a id="blogtags" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Tags' %}"><i class="fas fa-tags fa-fw"></i>&nbsp;标签</a></li>
+                <li><a id="blogarchives" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Archives' %}"><i class="fas fa-archive fa-fw"></i>&nbsp;归档</a></li>
+                <li><a id="blogproject" class="nav flat-box waves-effect waves-block" href="{% url 'blog:Project' %}"><i class="fas fa-flask fa-fw"></i>&nbsp;项目</a></li>
+                <li><a id="blogabout" class="nav flat-box waves-effect waves-block" href="{% url 'blog:About' %}"><i class="fas fa-user fa-fw"></i>&nbsp;关于</a></li>
+            </ul>
+        </nav>
+    </header>
+</aside>

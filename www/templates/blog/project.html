@@ -1,0 +1,78 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+{% block title %}
+    {{ SITE_CONFIGS.Name }} - 我的项目
+{% endblock %}
+
+{% block l_main %}
+<div class="l_main">
+    <!-- 正文部分 -->
+    <article id="post" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+
+        <!-- 标题 -->
+        <section class="meta">
+            <div class="meta" id="header-meta">
+                <h1 class="title">{{ post.title }}</h1>
+                <div class="new-meta-box">
+                    <div class="new-meta-item author"><a href="/blog"><i class="fas fa-user" aria-hidden="true"></i> {{ post.author }}</a></div>
+                    <div class="new-meta-item date"><a class="notlink"><i class="fas fa-clock" aria-hidden="true"></i> {{ post.created_time | date:'Y-m-d H:i:s' }}</a></div>
+                    <div class="new-meta-item browse busuanzi"><a class="notlink"><i class="fas fa-eye" aria-hidden="true"></i> <span id="busuanzi_value_page_pv">{{ post.views }}</span></a></div>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <!-- 正文 -->
+        <section class="article typo">
+            <div class="article-entry" itemprop="articleBody">{{ post.body | safe }}</div>
+
+            <section class="meta" id="footer-meta">
+                <hr>
+                <div class="new-meta-box">
+                    <div class="new-meta-item date" itemprop="dateUpdated" datetime="2017-12-25T00:00:00+08:00">
+                        <a class="notlink"><i class="fas fa-pencil-alt" aria-hidden="true"></i> {{ post.modified_time | date:'Y-m-d H:i:s' }}</a>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+
+    </article>
+    <br>
+
+    <!-- 评论区 -->
+    <article class="post white-box comments">
+        <section class="article typo">
+            <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+            <!-- Gitalk 评论 start  -->
+            <!-- Link Gitalk 的支持文件  -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+            <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+            <div id="gitalk-container"></div>
+            <script type="text/javascript">
+                var gitalk = new Gitalk({
+                    // gitalk的主要参数
+                    clientID: '{{ SITE_CONFIGS.Gitalk.clientID }}',
+                    clientSecret: '{{ SITE_CONFIGS.Gitalk.clientSecret }}',
+                    repo: '{{ SITE_CONFIGS.Gitalk.repo }}',
+                    owner: '{{ SITE_CONFIGS.Gitalk.owner }}',
+                    admin: ['{{ SITE_CONFIGS.Gitalk.admin }}'],
+                    id: "{% url 'blog:Project' %}",
+                    distractionFreeMode: false
+                });gitalk.render('gitalk-container');
+            </script>
+            <!-- Gitalk end -->
+        </section>
+    </article>
+
+    <script>window.subData={title:"{{ post.title }}",tools:!0}</script>
+</div>
+
+
+{% endblock %}
+
+

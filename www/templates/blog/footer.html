@@ -1,0 +1,40 @@
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<footer id="footer">
+    <div class="social-wrapper">
+        {% if SITE_CONFIGS.Footer.Email %}
+        <a href="mailto:{{ SITE_CONFIGS.Footer.Email }}" class="social fas fa-envelope" target="_blank" rel="external noopener noreferrer nofollow"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.Footer.GitHub %}
+        <a href="{{ SITE_CONFIGS.Footer.GitHub }}" class="social fab fa-github" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.Footer.Weibo %}
+        <a href="{{ SITE_CONFIGS.Footer.Weibo }}" class="social fab fa-weibo" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.Footer.Twitter %}
+        <a href="{{ SITE_CONFIGS.Footer.Twitter }}" class="social fab fa-twitter" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.Footer.Music %}
+        <a href="{{ SITE_CONFIGS.Footer.Music }}" class="social fas fa-headphones-alt" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+    </div>
+    <p><a href="http://bgods.cn/" target="_blank">Copyright © 2013-<span id="NowYear" ></span> Bgods</a></p>
+    {% if SITE_CONFIGS.Footer.Beian %}
+    <p><a href="http://www.miitbeian.gov.cn/" rel="external nofollow" target="_blank">{{ SITE_CONFIGS.Footer.Beian }}</a></p>
+    {% endif %}
+
+</footer>
+
+<script>var x = document.getElementById("NowYear");x.innerHTML = new Date().getFullYear();</script>
+
+<!-- 百度统计代码 -->
+{% if SITE_CONFIGS.BaiduTj %}
+{{ SITE_CONFIGS.BaiduTj | safe }}
+{% endif %}
+

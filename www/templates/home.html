@@ -1,0 +1,122 @@
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{ SITE_CONFIGS.Name }} - {{ SITE_CONFIGS.Title }}</title>
+    <meta name="keywords" content="Bgods,Python">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_16x16.png' %}">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <meta name="msapplication-TileColor" content="#f24e32">
+    <meta name="theme-color" content="#FFFFFF">
+
+
+    <link rel="stylesheet" href="{% static 'css/index.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/APlayer.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+    <script async="" src="{% static 'js/busuanzi.pure.mini.js' %}"></script>
+    <script src="{% static 'js/APlayer.min.js' %}"></script>
+    <script src="{% static 'js/Meting.min.js' %}"></script>
+    <script src="{% static 'js/vue.min.js' %}"></script>
+    <script>Vue.config.productionTip=!1,window.PAGE_TYPE=""</script>
+
+</head>
+
+<body>
+    <div id="mobile-bar" class="top">
+        <a class="menu-button fas fa-bars"></a>
+        <a class="logo" href="{% url 'home' %}"></a>
+    </div>
+    <div id="header">
+        <a id="logo" href="{% url 'home' %}">
+            <img src="{% static 'images/favicon.ico' %}">
+            <span>{{ SITE_CONFIGS.Name }}</span>
+        </a>
+        <ul id="nav">
+            <li class="nav-dropdown-container more">
+                <a class="nav-link"><i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
+                <ul class="nav-dropdown">
+                    <li><ul><li><a class="nav-link" href="/admin"><i class="fas fa-user-md fa-fw"></i>&nbsp;Admin</a></li></ul></li>
+                    <li><h4></h4></li>
+                    <li>
+                        <ul>
+                            <li><a class="nav-link" target="_blank" href="https://github.com/Bgods" rel="external nofollow noopener noreferrer"><i class="fab fa-github fa-fw"></i>&nbsp;Github</a></li>
+                            <li><a class="nav-link" target="_blank" href="mailto:932794753@qq.com"><i class="fas fa-envelope fa-fw"></i>&nbsp;Email</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-inner-index">
+            <ul class="main-menu"><br><h2><a href="{% url 'home' %}">{{ SITE_CONFIGS.Name }}</a></h2>
+                <li class="nav-dropdown-container more">
+                    <a class="nav-link"><i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
+                    <ul class="nav-dropdown">
+                        <li><ul><li><a class="nav-link" href="/admin"><i class="fas fa-user-md fa-fw"></i>&nbsp;Admin</a></li></ul></li>
+                        <li><h4></h4></li>
+                        <li>
+                            <ul>
+                                <li><a class="nav-link" target="_blank" href="https://github.com/Bgods" rel="external nofollow noopener noreferrer"><i class="fab fa-github fa-fw"></i>&nbsp;Github</a></li>
+                                <li><a class="nav-link" target="_blank" href="mailto:932794753@qq.com"><i class="fas fa-envelope fa-fw"></i>&nbsp;Email</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="hero">
+        <div class="inner">
+            <div class="left"><img class="hero-logo" src="{% static 'images/avatar.png' %}" alt="avatar"></div>
+            <div class="right">
+                <h2 class="vue">{{ SITE_CONFIGS.Name }}</h2>
+                <div class="home-nav">
+                    <ul class="pure">
+                        <li><a href="{% url 'blog:Project' %}"><i class="fas fa-flask"></i>项目</a></li>
+                        <li><a href="{% url 'blog:Index' %}"><i class="fas fa-rss"></i>博客</a></li>
+                    </ul>
+                    <ul class="pure">
+                        <li><a href="{% url 'blog:Archives' %}"><i class="fas fa-archive"></i>归档</a></li>
+                        <li><a href="{% url 'blog:About' %}"><i class="fas fa-user"></i>关于</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="posts">
+        <div class="inner">
+
+
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal"><div class="video-space" style="padding:56.25% 0 0 0;position:relative"></div></div>
+    <script>!function(){var e=!1;window.addEventListener("scroll",function(){165<window.pageYOffset&&!e?(e=!0,document.getElementById("mobile-bar").classList.remove("top")):window.pageYOffset<=165&&e&&(e=!1,document.getElementById("mobile-bar").classList.add("top"))})}()</script>
+
+    <!-- footer -->
+    {% include 'blog/footer.html' %}
+
+    <script src="{% static 'js/css.escape.js' %}"></script>
+    <script src="{% static 'js/fastclick.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+
+    <script>document.addEventListener("DOMContentLoaded",function(){FastClick.attach(document.body)},!1)</script>
+
+</body>
+
+</html>
