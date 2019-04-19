@@ -106,7 +106,10 @@ python manage.py runserver 127.0.0.1:9000
 ### 7、其他问题
 
 
-1. 头像logo
+- 代码高亮
+博客集成Markdown编辑器mdeditor，前端使用highlightjs实现代码高亮，[https://highlightjs.org/static/demo/](https://highlightjs.org/static/demo/)
 
 站点logo都存放在 www/static/images/ 目录，自行替换
+
+
 
