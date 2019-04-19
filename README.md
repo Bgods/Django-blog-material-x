@@ -4,7 +4,8 @@
 
 ## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的。
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的；
+后台集成集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
 
 ![](doc/admin-post-add.png)
 ![](doc/admin-post-view.png)
@@ -108,8 +109,8 @@ python manage.py runserver 127.0.0.1:9000
 
 - 代码高亮：
 
-博客集成Markdown编辑器mdeditor，前端代码高亮使用的是highlight.js插件。
-代码配色都放在 **www/static/highlight/styles** 下，默认使用atelier-savanna-dark.css，需要更换不同配色的请修改templates/blog/base.html模板
+代码配色都放在 **www/static/highlight/styles** 下，默认使用atelier-savanna-dark.css；
+需要更换不同配色的请修改templates/blog/base.html模板
 ```html
 <!-- 代码高亮插件 -->
 <link rel="stylesheet" href="{% static 'highlight/styles/atelier-savanna-dark.css' %}">
