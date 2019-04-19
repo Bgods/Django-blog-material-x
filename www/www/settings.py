@@ -78,13 +78,24 @@ WSGI_APPLICATION = 'www.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bg_blog',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'PORT': '3306',
+        'HOST': 'localhost',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -178,14 +189,12 @@ MDEDITOR_CONFIGS = {
 
 }
 
-
-
 # 站点配置
 SITE_CONFIGS = {
     'Name': 'Bgods', # 站点名称
     'Title': '人生苦短,我用Python', # 站点标题
 
-    # 站点底部footer配置，请改为自己的，不需要的选项可以留空
+    # 站点底部footer配置
     'Footer': {
         'Email': 'bgods@qq.com', # 邮箱
         'Weibo': 'http://weibo.com/songzhilian22', # 新浪微博
@@ -201,24 +210,25 @@ SITE_CONFIGS = {
         'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
     },
 
-    # 第三方评论Gitalk插件配置，不需要评论的可以留空，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
+    # 第三方评论Gitalk插件配置，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
     'Gitalk': {
-        'clientID': '你的clientID', # Github Application clientID
-        'clientSecret': '你的clientSecret', # Github Application clientSecret
-        'repo': 'Github 仓库名', # 存储你评论 issue 的 Github 仓库名
-        'owner': 'Github 用户名', # Github 用户名
-        'admin': 'Github 用户名', # Github 用户名
+        'clientID': '7afb28d7b242be2c2bcf', # Github Application clientID
+        'clientSecret': 'adda5b586dc2296aeac7f6aa864bcbb35b37f5c0', # Github Application clientSecret
+        'repo': 'GitalkComment', # 存储你评论 issue 的 Github 仓库名
+        'owner': 'Bgods', # Github 用户名
+        'admin': 'Bgods', # Github 用户名
     },
 
-    # 百度统计代码，获取方法自行百度,不需要的话可以留空
+    # 百度统计,代码获取方法自行百度,不需要的话可以留空
     'BaiduTj': '''
     <script>
     var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?你的ID";
+        hm.src = "https://hm.baidu.com/hm.js?6e38327240074713d2f76cb5cab11894";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
     </script>''',
+
 }
