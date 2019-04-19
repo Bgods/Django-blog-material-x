@@ -106,10 +106,18 @@ python manage.py runserver 127.0.0.1:9000
 ### 7、其他问题
 
 
-- 代码高亮
-博客集成Markdown编辑器mdeditor，前端使用highlightjs实现代码高亮，[https://highlightjs.org/static/demo/](https://highlightjs.org/static/demo/)
+- 代码高亮：
 
-站点logo都存放在 www/static/images/ 目录，自行替换
+博客集成Markdown编辑器mdeditor，前端代码高亮使用的是highlight.js插件。
+代码配色都放在 **www/static/highlight/styles** 下，默认使用atelier-savanna-dark.css，需要更换不同配色的请修改templates/blog/base.html模板
+```html
+<!-- 代码高亮插件 -->
+<link rel="stylesheet" href="{% static 'highlight/styles/atelier-savanna-dark.css' %}">
+```
+配色参考：[https://highlightjs.org/static/demo/](https://highlightjs.org/static/demo/)
 
+- 静态文件：
+
+路径 www/static 下存放的js、css、font，以及站点的logo等图片，logo等图片可以替换自己的；
 
 
