@@ -212,11 +212,11 @@ SITE_CONFIGS = {
 
     # 第三方评论Gitalk插件配置，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
     'Gitalk': {
-        'clientID': '7afb28d7b242be2c2bcf', # Github Application clientID
-        'clientSecret': 'adda5b586dc2296aeac7f6aa864bcbb35b37f5c0', # Github Application clientSecret
-        'repo': 'GitalkComment', # 存储你评论 issue 的 Github 仓库名
-        'owner': 'Bgods', # Github 用户名
-        'admin': 'Bgods', # Github 用户名
+        'clientID': '你的clientID', # Github Application clientID
+        'clientSecret': '你的clientSecret', # Github Application clientSecret
+        'repo': '仓库名', # 存储你评论 issue 的 Github 仓库名
+        'owner': 'Github 用户名', # Github 用户名
+        'admin': 'Github 用户名', # Github 用户名
     },
 
     # 百度统计,代码获取方法自行百度,不需要的话可以留空
@@ -225,7 +225,7 @@ SITE_CONFIGS = {
     var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?6e38327240074713d2f76cb5cab11894";
+        hm.src = "https://hm.baidu.com/hm.js?你的ID";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
