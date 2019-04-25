@@ -203,7 +203,7 @@ SITE_CONFIGS = {
         'mode': 'circulation', # random （随机） single （单曲） circulation （列表循环） order （列表）
         'type': 'playlist',    # song （单曲） album （专辑） playlist （歌单） search （搜索）
         'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
-        'autoplay': 'false', #是否自动播放：true/false
+        'autoplay': 'true', #是否自动播放：true/false
     },
 
     # 第三方评论Gitalk插件配置，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
