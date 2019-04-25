@@ -4,6 +4,8 @@
 {% get_site_configs as SITE_CONFIGS %}
 
 <aside class="l_side">
+
+    <!-- 侧边栏用户插件 -->
     <section class="author">
         <div class="content pure">
             <div class="avatar"><img class="avatar" src="{% static 'images/avatar.png' %}"></div>
@@ -37,7 +39,7 @@
     {% endif %}
 
 
-
+    <!-- 侧边栏广告栏插件 -->
     <section class="plain">
         <header class="pure">
             <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;注意啦～</div>
@@ -50,7 +52,7 @@
 
     </section>
 
-
+    <!-- 侧边栏热门标签插件 -->
     <section class="tagcloud">
         <header class="pure"><div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div></header>
         <div class="content pure">
@@ -66,7 +68,7 @@
         </div>
     </section>
 
-
+    <!-- 侧边栏友情链接插件 -->
     <section class="list">
         <header class="pure"><div><i class="fas fa-medal fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友情链接</div></header>
         <div class="content pure">
@@ -81,19 +83,20 @@
         </div>
     </section>
 
+    <!-- 侧边栏音乐插件 -->
+    {% if SITE_CONFIGS.Music.enable == 'true' %}
     <section class="music">
         <header class="pure">
             <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
             <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="{{ SITE_CONFIGS.Music.home }}" title="{{ SITE_CONFIGS.Music.home }}"><i class="far fa-heart fa-fw"></i></a>
         </header>
         <div class="content pure">
-            <link rel="stylesheet" href="{% static 'css/APlayer.min.css' %}">
-            <div class="aplayer" data-theme="#1BCDFC" data-mode="circulation" data-server="netease" data-type="playlist" data-id="{{ SITE_CONFIGS.Music.id }}" data-volume="0.7"></div>
-            <script async="" src="{% static 'js/APlayer.min.js' %}"></script>
-            <script async="" src="{% static 'js/Meting.min.js' %}"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+            <div class="aplayer" {% if  SITE_CONFIGS.Music.autoplay == 'true' %}data-autoplay="true"{% else %}{% endif %} data-theme="#1BCDFC" data-mode="{{ SITE_CONFIGS.Music.mode }}" data-server="{{ SITE_CONFIGS.Music.server }}" data-type="{{ SITE_CONFIGS.Music.type }}" data-id="{{ SITE_CONFIGS.Music.id }}" data-volume="0.7"></div>
+            <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
         </div>
     </section>
-
-
+    {% endif %}
 </aside>
 
