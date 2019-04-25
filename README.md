@@ -43,11 +43,15 @@ SITE_CONFIGS = {
         'Beian': '粤ICP备17050010号', # 备案号
     },
 
-    # 侧边栏网易云音乐插件配置
+    # 侧边栏音乐插件配置
     'Music': {
-        'home': 'https://music.163.com/#/user/home?id=1534745920', # 网易云用户主页，点击会跳转到你的主页
-        'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
-    },
+        'enable': 'true',      # 是否启用：true/false
+        'home': 'https://music.163.com/#/user/home?id=1534745920', # 用户主页，点击会跳转到你的主页
+        'server': 'netease',   # netease（网易云音乐）tencent（QQ音乐） xiami（虾米） kugou（酷狗）
+        'mode': 'circulation', # random （随机） single （单曲） circulation （列表循环） order （列表）
+        'type': 'playlist',    # song （单曲） album （专辑） playlist （歌单） search （搜索）
+        'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的网易云的歌单id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
+        'autoplay': 'false', #是否自动播放：true/false
 
     # 第三方评论Gitalk插件配置，不需要评论的可以留空，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
     'Gitalk': {
