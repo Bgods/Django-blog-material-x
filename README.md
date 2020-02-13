@@ -1,4 +1,4 @@
-## 示例
+﻿## 示例
 [![](https://img.shields.io/badge/我的个人博客-http://bgods.cn/-green.svg)](http://bgods.cn/)
 
 
@@ -7,6 +7,9 @@
 本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的；
 后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
 
+[![](doc/index.png)](doc/index.png)
+[![](doc/blog.png)](doc/blog.png)
+[![](doc/side.png)](doc/side.png)
 [![](doc/admin-post-add.png)](doc/admin-post-add.png)
 [![](doc/admin-post-view.png)](doc/admin-post-view.png)
 
