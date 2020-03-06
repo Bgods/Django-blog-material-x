@@ -9,7 +9,7 @@
 
 [![](doc/index.png)](doc/index.png)
 [![](doc/blog.png)](doc/blog.png)
-[![](doc/side.png)](doc/side.png)
+[![](doc/blog_admin.png)](doc/blog_admin.png)
 [![](doc/admin-post-add.png)](doc/admin-post-add.png)
 [![](doc/admin-post-view.png)](doc/admin-post-view.png)
 

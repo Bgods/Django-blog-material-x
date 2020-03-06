@@ -122,7 +122,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static") # 部署时用
+# STATIC_ROOT = os.path.join(BASE_DIR, "/static/") # 部署时用
 
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),

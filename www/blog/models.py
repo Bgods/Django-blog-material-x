@@ -88,3 +88,15 @@ class Links(models.Model):
         verbose_name_plural = u'友情链接'
 
 
+# 广告链接
+class Advertising(models.Model):
+    ad_name = models.CharField(max_length=100, verbose_name=u'广告名称')
+    ad_url = models.URLField(max_length=225, verbose_name=u'广告链接')
+    img_url = models.URLField(max_length=225, verbose_name=u'展示图片URL')
+    is_show = models.BooleanField(default=True, verbose_name=u'是否推广')
+
+    def __str__(self):
+        return self.ad_name
+    class Meta:
+        verbose_name = u'广告链接'
+        verbose_name_plural = u'广告链接'

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from blog.models import Post, Tag, Links
+from blog.models import Post, Tag, Links, Advertising
 from django import template
 from django.db.models.aggregates import Count
 from www.settings import SITE_CONFIGS
@@ -38,10 +38,17 @@ def get_tags():
     tags = Tag.objects.filter(post__is_show=True).annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')[:20]
     return {'tags_style':tags_style, 'tags':tags}
 
+
 # 获取友情链接
 @register.simple_tag
 def get_links():
     return Links.objects.filter(is_show=True)
+
+
+# 获取广告链接
+@register.simple_tag
+def get_advertising():
+    return Advertising.objects.filter(is_show=True)
 
 
 # 站点配置

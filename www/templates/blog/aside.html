@@ -42,12 +42,14 @@
     <!-- 侧边栏广告栏插件 -->
     <section class="plain">
         <header class="pure">
-            <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;注意啦～</div>
+            <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;广告位!</div>
         </header>
 
         <div class="content pure">
-            <a href="https://www.aliyun.com/acts/product-section-2019/new-users?userCode=lamq9ca3" target="_blank"><img width="100%" src="{% static 'images/guanggao/aliyun_001.png' %}"></a>
-            <a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=lamq9ca3" target="_blank"><img width="100%" src="{% static 'images/guanggao/aliyun_002.png' %}"></a>
+            {% get_advertising as advertising %}
+            {% for ad in advertising %}
+            <a title="{{ ad.ad_name }}" href="{{ ad.ad_url }}" target="_blank"><img width="100%" src="{{ ad.img_url }}"></a>
+            {% endfor %}
         </div>
 
     </section>
