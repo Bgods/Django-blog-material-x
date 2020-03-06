@@ -7,11 +7,11 @@
 本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的；
 后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
 
-![](doc/index.png)
-![](doc/blog.png)
-![](doc/blog_admin.png)
-![](doc/admin-post-add.png)
-![](doc/admin-post-view.png)
+[![](doc/index.png)](doc/index.png)
+[![](doc/blog.png)](doc/blog.png)
+[![](doc/blog_admin.png)](doc/blog_admin.png)
+[![](doc/admin-post-add.png)](doc/admin-post-add.png)
+[![](doc/admin-post-view.png)](doc/admin-post-view.png)
 
 
 ## 使用方法
@@ -87,7 +87,7 @@ virtualenv venv # 创建虚拟环境
 source venv/bin/activate # 激活虚拟环境
 pip install -r requirements.txt # 安装依赖
 ```
-![](doc/install-packages.png)
+[![](doc/install-packages.png)](doc/install-packages.png)
 
 ### 4、创建数据库
 
@@ -95,7 +95,7 @@ pip install -r requirements.txt # 安装依赖
 python manage.py makemigrations
 python manage.py migrate
 ```
-![](doc/create-database.png)
+[![](doc/create-database.png)](doc/create-database.png)
 
 ### 5、创建超级管理员账号
 
@@ -104,7 +104,7 @@ python manage.py createsuperuser
 ```
 依次输入用户名，邮箱，密码
 
-![](doc/create-admin-user.png)
+[![](doc/create-admin-user.png)](doc/create-admin-user.png)
 
 ### 6、运行
 ```bash
