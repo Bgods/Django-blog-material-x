@@ -103,6 +103,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 依次输入用户名，邮箱，密码
+
 ![](doc/create-admin-user.png)
 
 ### 6、运行
