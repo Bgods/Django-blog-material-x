@@ -3,6 +3,12 @@
 {% block title %}{{ SITE_CONFIGS.Name }}'s Blog{% endblock %}
 
 {% block l_main %}
+<style>
+    .l_main .post-list .post-wrapper .post img {
+        display: none;
+    }
+</style>
+
 <div class="l_main">
     <section class="post-list">
         {% for post in post_list %}
@@ -35,6 +41,7 @@
     </section>
     <br>
 
+    <!-- 翻页 -->
     <div class="prev-next">
         <div class="prev-next">
             {% if post_list.has_previous %}
