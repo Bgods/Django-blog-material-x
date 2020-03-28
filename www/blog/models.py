@@ -44,6 +44,8 @@ class Post(models.Model):
     is_top = models.BooleanField(default=False, verbose_name=u'顶置文章')
     # 文章发布状态，默认是创建成功就发布
     is_show = models.BooleanField(default=True, verbose_name=u'发布状态')
+    # 排序级别，默认为空，值越大，文章就排最靠前
+    sort_level = models.PositiveIntegerField(null=True, blank=True, verbose_name=u'排序级别')
 
     # 文章类型：注意 about 和 project 只能创建一个
     post_type = models.CharField(max_length=20,
@@ -69,8 +71,8 @@ class Post(models.Model):
 
 
     class Meta:
-        # 获取 Post 列表时，按照顶置、创建时间排序
-        ordering = ['-is_top', '-created_time']
+        # 获取 Post 列表时，按照顶置文章、排序级别、创建时间排序
+        ordering = ['-is_top', '-sort_level', '-created_time']
         verbose_name = u'博客文章'
         verbose_name_plural = u'博客文章'
 
