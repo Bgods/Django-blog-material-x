@@ -10,7 +10,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_time', 'modified_time', 'author', 'is_top', 'is_show', 'post_type']
+    list_display = ['title', 'created_time', 'modified_time', 'author', 'is_top', 'is_show', 'post_type', 'sort_level']
 
 
 @admin.register(Links)
