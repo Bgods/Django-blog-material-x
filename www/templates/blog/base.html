@@ -73,36 +73,9 @@
     <script src="{% static 'js/volantis.min.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
     <script src="{% static 'js/search.js' %}"></script>
-
-
-
-
-
+    <script type="text/javascript">$("div .article-entry a").attr("target","_blank");</script>
     <script>setLoadingBarProgress(100)</script>
     <script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script>
 
-
-    <!-- 搜索框 -->
-    <div id="u-search">
-        <div class="modal">
-            <header class="modal-header">
-                <form id="u-search-modal-form" class="u-search-form" name="uSearchModalForm">
-                    <input type="text" id="u-search-modal-input" class="u-search-input">
-                    <button type="submit" id="u-search-modal-btn-submit" class="u-search-btn-submit"> <span class="fas fa-search"></span> </button>
-                </form>
-                <a class="btn-close"> <span class="fas fa-times"></span> </a>
-                <div class="modal-loading"><div class="modal-loading-bar"></div></div>
-            </header>
-            <main class="modal-body"><ul class="modal-results modal-ajax-content"></ul> </main>
-            <footer class="modal-footer clearfix">
-                <div class="modal-metadata modal-ajax-content"> <strong class="range"></strong> of <strong class="total"></strong></div>
-                <div class="modal-error"></div>
-                <div class="logo"></div>
-                <a class="nav btn-next modal-ajax-content"> <span class="text">NEXT</span> <span class="fas fa-chevron-right"></span> </a>
-                <a class="nav btn-prev modal-ajax-content"> <span class="fas fa-chevron-left"></span> <span class="text">PREV</span> </a>
-            </footer>
-        </div>
-        <div class="modal-overlay"></div>
-    </div>
 </body>
 </html>
