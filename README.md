@@ -4,8 +4,8 @@
 
 ## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的，后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
-
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，使用 Python3.6.3+Django3.0.7编写，后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
+有疑问，或者建议可到[我的博客](http://bgods.cn/)下留言。
 
 ## 1、页面
 
@@ -79,9 +79,6 @@
 
 
 ## 使用方法
-
-由于本博客使用Python3.6.3+Django2.17编写，为了避免出现问题，建议使用相同配置环境，使用虚拟环境，这里以本地环境为例。
-有任何疑问，或建议可以到[我的博客](http://bgods.cn/)下留言
 
 ### 1、下载源代码到本地
 
