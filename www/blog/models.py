@@ -102,3 +102,37 @@ class Advertising(models.Model):
     class Meta:
         verbose_name = u'广告链接'
         verbose_name_plural = u'广告链接'
+
+
+# 侧边栏 - 音乐插件配置
+class SidebarMusic(models.Model):
+    server = models.CharField(
+        max_length=20,
+        choices=(('netease', u'网易云音乐'), ('tencent', u'QQ音乐'), ('xiami', u'虾米'), ('kugou', u'酷狗')),
+        default='netease',
+        verbose_name=u'平台'
+    )
+    mode = models.CharField(
+        max_length=20,
+        choices=(('random', u'随机'), ('single', u'单曲'), ('circulation', u'列表循环'), ('order', u'列表')),
+        default='random',
+        verbose_name=u'播放模式'
+    )
+    type = models.CharField(
+        max_length=20,
+        choices=(('song', u'单曲'), ('album', u'专辑'), ('playlist', u'歌单'), ('search', u'搜索')),
+        default='playlist',
+        verbose_name=u'类型'
+    )
+    # 播放歌单id，获取方法自行百度。比如我的id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
+    play_id = models.BigIntegerField(verbose_name=u'播放歌单id')
+    home_url = models.URLField(null=True, blank=True, max_length=225, verbose_name=u'音乐主页')
+    autoplay = models.BooleanField(default=True, verbose_name=u'自动播放')
+    enable = models.BooleanField(default=True, verbose_name=u'启用插件')
+
+    def __str__(self):
+        return self.server
+
+    class Meta:
+        verbose_name = u'侧边栏音乐配置'
+        verbose_name_plural = u'侧边栏音乐配置'

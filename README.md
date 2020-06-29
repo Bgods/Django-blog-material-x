@@ -4,14 +4,78 @@
 
 ## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的；
-后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，改用 Python3.6.3+Django2.17编写的，后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
 
-[![](doc/index.png)](doc/index.png)
-[![](doc/blog.png)](doc/blog.png)
-[![](doc/blog_admin.png)](doc/blog_admin.png)
-[![](doc/admin-post-add.png)](doc/admin-post-add.png)
-[![](doc/admin-post-view.png)](doc/admin-post-view.png)
+
+## 1、页面
+
+
+- 侧边栏有
+
+侧边栏有个人卡片、、广告位、友情链接、热门标签、音乐插件，可在默认配置文件及后台管理修改相关设置。
+
+![](doc/20200628201300_20200628201552430264.png)
+
+- 主页
+
+![](doc/20200628200342_20200628200351318761.png)
+
+- 博客列表页
+
+![](doc/20200628200426_20200628200442092801.png)
+
+- 归档
+
+![](doc/20200628200637_20200628200804390809.png)
+
+- 标签
+
+![](doc/20200628200648_20200628200811378221.png)
+
+- 博客正文
+
+博客正文支持代码高亮，支持显示文章目录。
+
+![](doc/20200628201011_20200628201032263425.png)
+
+- 评论
+
+评论区支持 Markdown 语法，评论支持邮箱通知
+
+![](doc/20200628201112_20200628201129280228.png)
+
+
+## 2、后台管理
+
+使用[simpleui](https://github.com/newpanjing/simpleui)第三方后台管理工具，特色如下：
+
+- 编辑器
+
+后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，
+
+![](doc/admin-post-add_20190426204956161746_20200628202421166552.png)
+
+- 后台管理主页
+
+![](doc/20200628193705_20200628202441972883.png)
+
+- 博客文章管理
+
+![](doc/20200628195746_20200628202520322945.png)
+
+- 友情链接管理
+
+![](doc/20200628195756_20200628202557646635.png)
+
+- 音乐插件管理
+
+支持虾米音乐、QQ音乐、酷狗音乐、网易云音乐。注意设置多个时，只有一个是有效，因此可以将其他设置为不启用，只需要启用一个即可。
+
+![](doc/20200628202801_20200628202818109763.png)
+
+- 评论管理
+
+![](doc/20200628195857_20200628202648432891.png)
 
 
 ## 使用方法
@@ -36,7 +100,7 @@ SITE_CONFIGS = {
     'Name': 'Bgods', # 站点名称
     'Title': '人生苦短,我用Python', # 站点标题
 
-    # 站点底部footer配置，请改为自己的，不需要的选项可以留空
+    # 站点底部footer配置
     'Footer': {
         'Email': 'bgods@qq.com', # 邮箱
         'Weibo': 'http://weibo.com/songzhilian22', # 新浪微博
@@ -46,26 +110,8 @@ SITE_CONFIGS = {
         'Beian': '粤ICP备17050010号', # 备案号
     },
 
-    # 侧边栏音乐插件配置
-    'Music': {
-        'enable': 'true',      # 是否启用：true/false
-        'home': 'https://music.163.com/#/user/home?id=1534745920', # 用户主页，点击会跳转到你的主页
-        'server': 'netease',   # netease（网易云音乐）tencent（QQ音乐） xiami（虾米） kugou（酷狗）
-        'mode': 'circulation', # random （随机） single （单曲） circulation （列表循环） order （列表）
-        'type': 'playlist',    # song （单曲） album （专辑） playlist （歌单） search （搜索）
-        'id': '2700450552', # 播放歌单id，获取方法自行百度。比如我的网易云的歌单id就是链接后面的id，https://music.163.com/#/playlist?id=2700450552
-        'autoplay': 'false', #是否自动播放：true/false
 
-    # 第三方评论Gitalk插件配置，不需要评论的可以留空，关于下面的参数获取自己百度：(参考链接:https://www.jianshu.com/p/78c64d07124d)
-    'Gitalk': {
-        'clientID': '你的clientID', # Github Application clientID
-        'clientSecret': '你的clientSecret', # Github Application clientSecret
-        'repo': 'Github 仓库名', # 存储你评论 issue 的 Github 仓库名
-        'owner': 'Github 用户名', # Github 用户名
-        'admin': 'Github 用户名', # Github 用户名
-    },
-
-    # 百度统计代码，获取方法自行百度,不需要的话可以留空
+    # 百度统计,代码获取方法自行百度,不需要的话可以留空
     'BaiduTj': '''
     <script>
     var _hmt = _hmt || [];
@@ -77,6 +123,16 @@ SITE_CONFIGS = {
     })();
     </script>''',
 }
+
+#  邮箱配置
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.163.com'  # 我这里使用的是163邮箱，可以配置其他QQ等
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'bgods_blog@163.com'  # 邮箱帐号
+EMAIL_HOST_PASSWORD = '******'  # 邮箱密码
+DEFAULT_FROM_EMAIL = 'bgods_blog <bgods_blog@163.com>'   # 发件人，邮件头部显示
+HTTP_HOST = 'http://bgods.cn'  # 正式部署时站点域名，用于评论回复发送邮件时，收件人从邮件中的跳转到评论区。我这里是http://bgods.cn
+
 ```
 ### 3、安装依赖
 
@@ -89,7 +145,13 @@ pip install -r requirements.txt # 安装依赖
 ```
 [![](doc/install-packages.png)](doc/install-packages.png)
 
-### 4、创建数据库
+### 4、收集静态文件
+
+```bash
+python manage.py collectstatic
+```
+
+### 5、创建数据库
 
 ```bash
 python manage.py makemigrations
@@ -97,7 +159,7 @@ python manage.py migrate
 ```
 [![](doc/create-database.png)](doc/create-database.png)
 
-### 5、创建超级管理员账号
+### 6、创建超级管理员账号
 
 ```bash
 python manage.py createsuperuser
@@ -106,13 +168,13 @@ python manage.py createsuperuser
 
 [![](doc/create-admin-user.png)](doc/create-admin-user.png)
 
-### 6、运行
+### 7、运行
 ```bash
 python manage.py runserver 127.0.0.1:9000
 ```
 运行上面代码，本地访问 127.0.0.1:9000 就能看到你的站点了。
 
-### 7、其他问题
+### 8、其他问题
 
 
 - 代码高亮：

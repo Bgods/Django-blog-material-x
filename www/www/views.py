@@ -4,9 +4,6 @@ from django.shortcuts import render
 from django.views import View
 
 
-
-
-
 # 主页
 class Home(View):
     def get(self, request):
@@ -17,10 +14,11 @@ class Home(View):
 
 
 # 404页面
-def page_not_found(request):
+def page_not_found(request, exception=None):
     return render(request, '404.html')
 
+
 # 500页面
-def server_error(request):
+def server_error(request, exception=None):
     return render(request, '500.html')
 

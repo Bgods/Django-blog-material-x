@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post, Tag, Links, Advertising
+from blog.models import Post, Tag, Links, Advertising, SidebarMusic
 
 
 # Register your models here.
@@ -21,3 +21,8 @@ class LinksAdmin(admin.ModelAdmin):
 @admin.register(Advertising)
 class AdvertisingAdmin(admin.ModelAdmin):
     list_display = ['ad_name', 'ad_url', 'img_url', 'is_show']
+
+
+@admin.register(SidebarMusic)
+class SidebarMusicAdmin(admin.ModelAdmin):
+    list_display = ['server', 'mode', 'type', 'play_id', 'home_url', 'autoplay', 'enable']

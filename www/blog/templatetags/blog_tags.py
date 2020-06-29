@@ -1,28 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from blog.models import Post, Tag, Links, Advertising
+from blog.models import Post, Tag, Links, Advertising, SidebarMusic
 from django import template
 from django.db.models.aggregates import Count
 from www.settings import SITE_CONFIGS
 
 register = template.Library()
-
-# 获取最新5个评论
-@register.simple_tag
-def get_recent_comments(num=5):
-    comments = Comment.objects.filter(is_show=True).order_by('-created_time')[:num]
-    return comments
-
-
-# 获取最新5篇文章
-@register.simple_tag
-def get_recent_posts(num=5):
-    return Post.objects.filter(is_show=True).order_by('-created_time')[:num]
-
-# 获取文章归档
-@register.simple_tag
-def get_archives():
-    return Post.objects.filter(is_show=True).dates('created_time', 'month', order='DESC')
 
 
 @register.simple_tag
@@ -49,6 +32,12 @@ def get_links():
 @register.simple_tag
 def get_advertising():
     return Advertising.objects.filter(is_show=True)
+
+
+# 侧边栏音乐配置
+@register.simple_tag
+def get_music():
+    return SidebarMusic.objects.filter(enable=True).first()
 
 
 # 站点配置

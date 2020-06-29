@@ -14,7 +14,7 @@ urlpatterns = [
 
 
     path('tags/<tag>/', BlogViews.Index().tags, name='tags'),
-    path('post/<int:pk>/',BlogViews.Detail.as_view(), name='post'),
+    path('post/<int:pk>/', BlogViews.Detail, name='post'),
     path('content.json/',BlogViews.search, name='search'),
 
 

@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+.v[data-class=v] .vcards .vcard {
+    padding-top: 1.25em;
+    position: relative;
+    display: block;
+}
+
+.v[data-class=v] * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.75;
+}
+
+.l_main #comments #valine_container .vcards .vimg {
+    border: 1px solid #fff;
+    padding: 0;
+    background: #f6f6f6;
+}
+.l_main #comments #valine_container img {
+    display: inline;
+}
+
+.v[data-class=v] .vcards .vcard .vimg {
+    width: 3.125em;
+    height: 3.125em;
+    float: left;
+    border-radius: 50%;
+    margin-right: .7525em;
+    border: 1px solid #f5f5f5;
+    padding: .125em;
+}
+
+.v[data-class=v] img {
+    max-width: 100%;
+    border: none;
+}
+
+.vh {
+    overflow: hidden;
+    padding-bottom: .5em;
+    border-bottom: 1px dashed #f5f5f5;
+}
+
+.v[data-class=v] .vcards .vcard .vhead {
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+.l_main #comments #valine_container .vcards .vhead a.vnick {
+    color: #ff9800;
+    font-weight: 700;
+}
+.v[data-class=v] .vcards .vcard .vhead .vnick {
+    position: relative;
+    font-size: .875em;
+    font-weight: 500;
+    margin-right: .875em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+.v[data-class=v] a {
+    position: relative;
+    cursor: pointer;
+    color: #1abc9c;
+    text-decoration: none;
+    display: inline-block;
+}
+.l_main #comments #valine_container .vcards .vhead .vsys {
+    margin: 2px;
+    padding: 1px 8px;
+    background-color: #f6f6f6;
+}
+
+.v[data-class=v] .vsys {
+    display: inline-block;
+    padding: .2em .5em;
+    font-size: .75em;
+    border-radius: .2em;
+    margin-right: .3em;
+}
+
+.v[data-class=v] .vsys, .v[data-class=v] .vtime {
+    color: #b3b3b3;
+}
+
+.v[data-class=v] .vsys, .v[data-class=v] .vtime {
+    color: #b3b3b3;
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.v[data-class=v] .vcards .vcard .vhead {
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+.v[data-class=v] {
+    font-size: 16px;
+    text-align: left;
+}
+
+.v[data-class=v] .vcards .vcard .vh .vmeta {
+    line-height: 1;
+    position: relative;
+}
+
+.v[data-class=v] .vcards .vcard .vh .vtime {
+    font-size: .75em;
+    margin-right: .875em;
+}
+
+.v[data-class=v] .vsys, .v[data-class=v] .vtime {
+    color: #b3b3b3;
+}
+
+.v[data-class=v] * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.75;
+}
+
+
+.l_main #comments #valine_container .vcards .vmeta .vat {
+    font-weight: 700;
+    color: #2196f3;
+    transition: all .28s ease;
+    -moz-transition: all .28s ease;
+    -webkit-transition: all .28s ease;
+    -o-transition: all .28s ease;
+}
+
+.v[data-class=v] .vcards .vcard .vh .vmeta .vat {
+    font-size: .8125em;
+    color: #ef2f11;
+    cursor: pointer;
+    float: right;
+}
+
+.v[data-class=v] .vcards .vcard .vcontent {
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: .875em;
+    line-height: 2;
+    position: relative;
+    margin-bottom: .75em;
+    padding-top: .625em;
+}
+
+.v[data-class=v] * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.75;
+}
+
+.l_main #comments #valine_container .vcards .vcontent p {
+    color: #555;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    line-height: inherit;
+}
+
+.l_main #comments #valine_container p {
+    color: #555;
+}
+
+.l_main #comments #valine_container .vcards .vquote {
+    border-left: none;
+}
+
+.v[data-class=v] .vcards .vcard .vquote {
+    padding-left: 1em;
+    border-left: 1px dashed hsla(0,0%,93%,.5);
+}

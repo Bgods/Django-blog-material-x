@@ -1,6 +1,5 @@
 {% load static %}
 {% load blog_tags %}
-{% load blog_tags %}
 {% get_site_configs as SITE_CONFIGS %}
 
 <aside class="l_side">
@@ -86,15 +85,16 @@
     </section>
 
     <!-- 侧边栏音乐插件 -->
-    {% if SITE_CONFIGS.Music.enable == 'true' %}
+    {% get_music as music %}
+    {% if music %}
     <section class="music">
         <header class="pure">
             <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-            <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="{{ SITE_CONFIGS.Music.home }}" title="{{ SITE_CONFIGS.Music.home }}"><i class="far fa-heart fa-fw"></i></a>
+            <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="{{ music.home_url }}" title="{{ music.home_url }}"><i class="far fa-heart fa-fw"></i></a>
         </header>
         <div class="content pure">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-            <div class="aplayer" {% if  SITE_CONFIGS.Music.autoplay == 'true' %}data-autoplay="true"{% else %}{% endif %} data-theme="#1BCDFC" data-mode="{{ SITE_CONFIGS.Music.mode }}" data-server="{{ SITE_CONFIGS.Music.server }}" data-type="{{ SITE_CONFIGS.Music.type }}" data-id="{{ SITE_CONFIGS.Music.id }}" data-volume="0.7"></div>
+            <div class="aplayer" {% if music.autoplay %}data-autoplay="true"{% endif %} data-theme="#1BCDFC" data-mode="{{ music.mode }}" data-server="{{ music.server }}" data-type="{{ music.type }}" data-id="{{ music.play_id }}" data-volume="0.7"></div>
             <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
         </div>
