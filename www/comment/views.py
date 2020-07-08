@@ -45,11 +45,18 @@ class CommentView(View):
             if reply_comment:
                 comment.to_nick = reply_comment.nick
                 comment.to_mail = reply_comment.mail
+
                 # 如果是回复评论，则发送邮件通知相关评论人
-                send_email(url=redirect_url, recipient_list=[reply_comment.mail])
+                try:
+                    send_email(url=redirect_url, recipient_list=[reply_comment.mail])
+                except BaseException as e:
+                    print('发送邮件错误: {}'.format(e))
         else:
             # 如果是新的评论内容，则发送通知博客作者
-            send_email(url=redirect_url, recipient_list=[EMAIL_HOST_USER])
+            try:
+                send_email(url=redirect_url, recipient_list=[EMAIL_HOST_USER])
+            except BaseException as e:
+                print('发送邮件错误: {}'.format(e))
 
         comment.avatar = get_avatar(request.POST['mail'])
         comment.save()  # 保存评论数据到数据库

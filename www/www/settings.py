@@ -68,7 +68,6 @@ WSGI_APPLICATION = 'www.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -77,9 +76,19 @@ DATABASES = {
     }
 }
 
+# MySQL
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': '数据库',
+#        'USER': '用户名',
+#        'PASSWORD': '密码',
+#        'HOST': '127.0.0.1',
+#        'PORT': '3306',
+#    }
+#}
 
 # Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
@@ -108,13 +116,12 @@ USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "collect_static")
 
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
+   os.path.join(BASE_DIR, "common_static"),
 ]
 
 MEDIA_URL = '/media/'
@@ -123,7 +130,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # mdeditor markdown编辑器配置
 MDEDITOR_CONFIGS = {
-    'default':{
+    'default': {
     'width': '90%',  # 自定义编辑框宽度
     'heigth': 500,   # 自定义编辑框高度
     'toolbar': ["undo", "redo", "|",

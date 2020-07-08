@@ -1,6 +1,9 @@
 # -*- coding:utf-8 -*-
 from django.db import models
-
+import markdown
+from mdeditor.fields import MDTextField
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 
 app_name = 'comment'
 
@@ -10,7 +13,7 @@ class Comment(models.Model):
     parent_id = models.IntegerField(blank=True, default=0, verbose_name=u'父级评论id')
     reply_id = models.IntegerField(blank=True, default=0, verbose_name=u'回复id')
 
-    content = models.TextField(verbose_name=u'评论内容')
+    content = MDTextField(verbose_name=u'评论内容')
     comment_type = models.CharField(
         max_length=10,
         choices=(('comment', u'评论'),
@@ -40,3 +43,14 @@ class Comment(models.Model):
         ordering = ['post_id', 'add_time']
         verbose_name = u'评论内容'
         verbose_name_plural = u'评论内容'
+
+    def get_markdown_content(self):
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            TocExtension(slugify=slugify),
+        ])
+        return {
+            'body': md.convert(self.content),
+            'toc': md.toc,
+        }

@@ -9,17 +9,6 @@ from django.db.models.aggregates import Count
 import json
 from django.http import HttpResponse
 from www.views import page_not_found
-import markdown
-from django.utils.text import slugify
-from markdown.extensions.toc import TocExtension
-
-
-def Markdown():
-    return markdown.Markdown(extensions=[
-        'markdown.extensions.extra',
-        'markdown.extensions.codehilite',
-        TocExtension(slugify=slugify),
-    ])
 
 
 # 获取某篇文章的评论回复内容
@@ -33,7 +22,7 @@ def comment_reply_content(post_id):
                 'id': comment.pk,
                 'post_id': comment.post_id,
                 'add_time': comment.add_time,
-                'content': Markdown().convert(comment.content),
+                'content': comment.get_markdown_content()['body'],
                 'parent_id': comment.parent_id,
                 'reply_id': comment.reply_id,
                 'nick': comment.nick,
@@ -51,7 +40,7 @@ def comment_reply_content(post_id):
                 'id': reply.pk,
                 'post_id': reply.post_id,
                 'add_time': reply.add_time,
-                'content': Markdown().convert(reply.content),
+                'content': reply.get_markdown_content()['body'],
                 'parent_id': reply.parent_id,
                 'reply_id': reply.reply_id,
                 'nick': reply.nick,
@@ -74,7 +63,7 @@ class Index(object):
         # 博客首页：获取Post表中所有文章列表
         post_list = Post.objects.filter(is_show=True, post_type='post')
         page = request.GET.get('page')
-        return self.get_data(post_list=post_list,page=page,request=request)
+        return self.get_data(post_list=post_list, page=page, request=request)
 
     def tags(self, request, tag):
         # 标签：按照标签(tag)查询Post表中的文章列表
@@ -85,9 +74,9 @@ class Index(object):
     def get_data(self,post_list, page, request):
         post_list = self.Pagination(post_list=post_list, page=page)
         for i in range(len(post_list)):
-            md = Markdown()
-            post_list[i].body = md.convert(post_list[i].body)
-            post_list[i].toc = md.toc
+            markdown_content = post_list[i].get_markdown_content()
+            post_list[i].body = markdown_content['body']
+            post_list[i].toc = markdown_content['toc']
 
         return render(request, 'blog/index.html', context={'post_list':post_list})
 
@@ -107,9 +96,9 @@ class Index(object):
 # 博客详情页
 def Detail(request, pk):
     post = get_object_or_404(Post, pk=pk, is_show=True, post_type='post')
-    md = Markdown()
-    post.body = md.convert(post.body)
-    post.toc = md.toc
+    markdown_content = post.get_markdown_content()
+    post.body = markdown_content['body']
+    post.toc = markdown_content['toc']
     post.increase_views()  # 调用 increase_views 方法，统计访问量
     comments_dict = comment_reply_content(post_id=pk)  # 评论回复
     return render(request, 'blog/detail.html', context={'post': post, 'comments_dict': comments_dict})
@@ -133,9 +122,9 @@ def Tags(request):
 def About(request):
     post = Post.objects.filter(post_type='about').first()
     if post:
-        md = Markdown()
-        post.body = md.convert(post.body)
-        post.toc = md.toc
+        markdown_content = post.get_markdown_content()
+        post.body = markdown_content['body']
+        post.toc = markdown_content['toc']
         post.increase_views()  # 调用 increase_views 方法，统计访问量
         comments_dict = comment_reply_content(post_id=post.id)  # 评论回复
         return render(request, 'blog/about.html', context={'post': post, 'comments_dict': comments_dict})
@@ -147,10 +136,10 @@ def About(request):
 def Project(request):
     post = Post.objects.filter(post_type='project').first()
     if post:
-        md = Markdown()
-        post.body = md.convert(post.body)
-        post.toc = md.toc
-        post.increase_views() # 调用 increase_views 方法，统计访问量
+        markdown_content = post.get_markdown_content()
+        post.body = markdown_content['body']
+        post.toc = markdown_content['toc']
+        post.increase_views()  # 调用 increase_views 方法，统计访问量
         comments_dict = comment_reply_content(post_id=post.id)  # 评论回复
         return render(request, 'blog/project.html', context={'post': post, 'comments_dict': comments_dict})
     else:
@@ -167,9 +156,9 @@ def search(request):
         data = {'posts': []}
         for post in post_list:
             data['posts'].append({
-                "title":post.title,
-                "permalink":post.get_absolute_url(),
-                "text":post.body
+                "title": post.title,
+                "permalink": post.get_absolute_url(),
+                "text": post.body
             },)
         return HttpResponse(json.dumps(data,ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
