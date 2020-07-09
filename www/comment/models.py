@@ -4,6 +4,8 @@ import markdown
 from mdeditor.fields import MDTextField
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
+import os
+import random
 
 app_name = 'comment'
 
@@ -32,7 +34,7 @@ class Comment(models.Model):
 
     browser = models.CharField(max_length=100, null=True, verbose_name=u'浏览器')
     client = models.CharField(max_length=100, null=True, verbose_name=u'客户端')
-    avatar = models.URLField(null=True, verbose_name=u'头像')
+    avatar = models.CharField(max_length=200, null=True, verbose_name=u'头像')
 
     is_show = models.BooleanField(default=True, verbose_name=u'是否显示评论')
 
@@ -54,3 +56,46 @@ class Comment(models.Model):
             'body': md.convert(self.content),
             'toc': md.toc,
         }
+
+    def save(self, *args, **kwargs):
+        self.avatar = get_avatar(self.mail)  # 获取头像
+        super().save(*args, **kwargs)
+
+
+# 获取评论用户头像
+def get_avatar(mail):
+    def get_avatar_files(file_path):  # 获取路径中的头像文件名
+        if os.path.exists(file_path):
+            files_list = []
+            for root, dirs, files in os.walk(file_path):
+                for file in files:
+                    # 筛选图片类型
+                    file_type = os.path.splitext(file)[1]
+                    if file_type.lower() in ['.png', '.jpg', '.jpeg']:
+                        files_list.append(file)
+            return files_list
+        else:
+            return []
+
+    try:
+        # 1、判断该用户头像是否存在
+        comment = Comment.objects.filter(mail=mail).first()
+        if comment:
+            if comment.avatar:
+                return comment.avatar
+
+        # 2、如果是新用户，则随机分配一个头像
+        path = r'static/comment_avatar'  # 静态文件static路径
+        comment_avatar_list = get_avatar_files(file_path=path)
+
+        if not comment_avatar_list:  # 如果路径中匹配不到，则从app的静态文件路径查找
+            comment_avatar_list = get_avatar_files(file_path='comment/' + path)
+
+        if comment_avatar_list:
+            comment_avatar = random.choice(comment_avatar_list)  # 随机取一个头像分配给评论用户
+            return '/{0}/{1}'.format(path, comment_avatar)
+
+        return ''
+    except BaseException as e:
+        print(e)
+        return ''
