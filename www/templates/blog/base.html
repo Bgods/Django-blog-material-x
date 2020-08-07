@@ -26,9 +26,10 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <!-- 代码高亮插件 -->
-    <link rel="stylesheet" href="{% static 'highlight/default.css' %}">
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'highlight/prism.css' %}">
 
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script>function setLoadingBarProgress(e){document.getElementById("loading-bar").style.width=e+"%"}</script>
 
 
@@ -55,7 +56,6 @@
 
     <script>setLoadingBarProgress(80)</script>
 
-    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script>var GOOGLE_CUSTOM_SEARCH_API_KEY="",GOOGLE_CUSTOM_SEARCH_ENGINE_ID="",ALGOLIA_API_KEY="",ALGOLIA_APP_ID="",ALGOLIA_INDEX_NAME="",AZURE_SERVICE_NAME="",AZURE_INDEX_NAME="",AZURE_QUERY_KEY="",BAIDU_API_ID="",SEARCH_SERVICE="hexo",ROOT="/blog/";ROOT.endsWith("/")||(ROOT+="/")</script>
 
     <script async="" src="{% static 'js/scrollreveal.min.js' %}"></script>

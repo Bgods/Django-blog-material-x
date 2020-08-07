@@ -23,20 +23,15 @@
 
 
     <!-- 文章目录 -->
-    {% if post.toc %}
     <section class="toc-wrapper">
-        <header class="pure">
-            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
-            <div class="wrapper">
-                <a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a>
-            </div>
+        <header class="pure toc-show-hide">
+            <div><i id="toc-icon" class="fas fa-caret-down fa-fw" aria-hidden="true"></i>文章目录</div>
         </header>
-        <div class="content pure">
-            <ol class="toc">{{ post.toc | safe }}</ol>
+        <div class="content pure" id="toc-content">
+            <ol class="toc"></ol>
         </div>
     </section>
-    {% endif %}
-
+    <script src="{% static 'js/toc.js' %}"></script>
 
     <!-- 侧边栏广告栏插件 -->
     <section class="plain">
@@ -47,7 +42,7 @@
         <div class="content pure">
             {% get_advertising as advertising %}
             {% for ad in advertising %}
-            <a title="{{ ad.ad_name }}" href="{{ ad.ad_url }}" target="_blank"><img width="100%" src="{{ ad.img_url }}"></a>
+            <a title="{{ ad.ad_name }}" href="{{ ad.ad_url }}" target="_blank"><img width="100%" src="{{ ad.img_url.url }}"></a>
             {% endfor %}
         </div>
 
@@ -60,12 +55,9 @@
             {% get_tags as tags_list %}
             {% for tag in tags_list.tags %}
             <a href="{% url 'blog:tags' tag.name %}" style="{{ tags_list.tags_style | random }}">{{ tag.name }}</a>
-
             {% empty %}
                 <a></a>
             {% endfor %}
-
-
         </div>
     </section>
 

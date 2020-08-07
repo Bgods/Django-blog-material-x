@@ -6,7 +6,7 @@ from .views import CommentView
 
 app_name = 'comment'
 
-
 urlpatterns = [
-    path('add/', CommentView.as_view(), name='add_comment'),
+    # 发表评论
+    path('post-comment/<int:post_id>/', CommentView.as_view(), name='post_comment'),
 ]

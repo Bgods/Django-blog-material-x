@@ -1,5 +1,6 @@
 from django.contrib import admin
-from blog.models import Post, Tag, Links, Advertising, SidebarMusic
+from blog.models import Post, Tag, Links, Advertising, SidebarMusic, Tutorial
+from django.utils.html import format_html
 
 
 # Register your models here.
@@ -8,10 +9,35 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 
+@admin.register(Tutorial)
+class TutorialAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_time', 'modified_time', 'author', 'is_top', 'is_show', 'post_type', 'sort_level']
+    def show_tags(self, obj):
+        tag_list = []
+        tags = obj.tags.all()
+        if tags:
+            for tag in tags:
+                tag_list.append(tag.name)
+            return ','.join(tag_list)
+        else:
+            return format_html('<span style="color:red;">无标签</span>')
 
+    '''设置表头'''
+    show_tags.short_description = '标签'  # 设置表头
+
+    list_display = ['title', 'show_tags', 'tutorial', 'created_time', 'modified_time', 'author', 'post_type', 'views', 'is_top', 'is_show']
+    fieldsets = (
+        (None, {'fields': ['post_type', 'title', 'body', 'author', 'created_time', 'tags', 'tutorial']}),
+        ('高级', {
+            'fields': ['views', 'is_show', 'is_top'],
+            'classes': ('collapse',)  # 是否折叠显示
+        }),
+    )
+    search_fields = ['title', 'show_tags']
 
 @admin.register(Links)
 class LinksAdmin(admin.ModelAdmin):
@@ -26,3 +52,4 @@ class AdvertisingAdmin(admin.ModelAdmin):
 @admin.register(SidebarMusic)
 class SidebarMusicAdmin(admin.ModelAdmin):
     list_display = ['server', 'mode', 'type', 'play_id', 'home_url', 'autoplay', 'enable']
+

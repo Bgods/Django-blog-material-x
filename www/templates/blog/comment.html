@@ -1,0 +1,108 @@
+﻿{% load static %}
+<link rel="stylesheet" href="{% static 'css/comment.css' %}">
+<article class="post white-box comments">
+    <section class="article typo">
+        <p ct=""><i class="fas fa-comments"></i> 评论</p>
+        <section id="comments">
+            <div id="valine_container" class="valine_thread v" data-class="v">
+
+                <!-- 评论提交表单区 -->
+                <div id="comments-post" class="vreply-wrapper">
+                    <div class="vpanel" id="comment-vpanel">
+                        <div class="vwrap">
+                            <form action="{% url 'comment:post_comment' post.id %}" method="post" id="comment-form">{% csrf_token %}
+                                <input name="parent_id" type="hidden" value="0">
+                                <input name="reply_id" type="hidden" value="0">
+                                <input name="redirect_url" class="redirect_url" type="hidden" value="">
+                                <input name="post_type" type="hidden" value="{{ post.post_type }}">
+                                <div class="vheader item3">
+                                    <input name="nick" id="nick" placeholder="昵称" class="vnick vinput" type="text" style="width: 49.5%;" required="required">
+                                    <input name="mail" id="mail" placeholder="邮箱" class="vmail vinput" type="email" style="width: 49.5%;" required="required">
+                                </div>
+                                <div class="vedit">
+                                    {{ comment_form.media }}
+                                    {{ comment_form.content }}
+                                </div>
+
+                                <div class="vrow">
+                                    <p style="color: #1bc3fb;float: left;font-size: 9px">支持上传图片(拖动图片或者截图粘贴)</p>
+                                    <input  title="提交评论" class="vsubmit vbtn" style="float: right;" type="submit" value="提交" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 回复表单 -->
+                <div class="vpanel" id="reply-vpanel" style="display: none;">
+                    <div class="vwrap">
+                        <form action="{% url 'comment:post_comment' post.id %}" method="post" id="reply-form">{% csrf_token %}
+                            <input name="parent_id" id="parent_id" type="hidden" value="0">
+                            <input name="reply_id" id="reply_id" type="hidden" value="0">
+                            <input name="redirect_url" class="redirect_url" type="hidden" value="">
+                            <input name="post_type" type="hidden" value="{{ post.post_type }}">
+
+                            <p id="cancel-reply" class="cancel-reply text-right" style="display: none;" title="取消回复">
+                                <svg style="float: right;" class="vicon cancel-reply-btn" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4220" width="22" height="22">
+                                    <path d="M796.454 985H227.545c-50.183 0-97.481-19.662-133.183-55.363-35.7-35.701-55.362-83-55.362-133.183V227.545c0-50.183 19.662-97.481 55.363-133.183 35.701-35.7 83-55.362 133.182-55.362h568.909c50.183 0 97.481 19.662 133.183 55.363 35.701 35.702 55.363 83 55.363 133.183v568.909c0 50.183-19.662 97.481-55.363 133.183S846.637 985 796.454 985zM227.545 91C152.254 91 91 152.254 91 227.545v568.909C91 871.746 152.254 933 227.545 933h568.909C871.746 933 933 871.746 933 796.454V227.545C933 152.254 871.746 91 796.454 91H227.545z" p-id="4221"></path>
+                                    <path d="M568.569 512l170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" p-id="4222"></path>
+                                </svg>
+                            </p>
+                            <div class="vheader item3">
+                                <input name="nick" id="nick" placeholder="昵称" class="vnick vinput" type="text" style="width: 49.5%;" required="required">
+                                <input name="mail" id="mail" placeholder="邮箱" class="vmail vinput" type="email" style="width: 49.5%;" required="required">
+                            </div>
+                            <div class="vedit">
+                                <textarea name="content" id="content" class="veditor vinput" placeholder="评论内容!" form="reply-form" required="required"></textarea>
+                            </div>
+
+                            <div class="vrow"><input  title="提交评论" class="vsubmit vbtn" style="float: right;" type="submit" value="提交" /></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 评论数 -->
+                <div class="vcount" style="display: block;"><span class="vnum">{{ comments_dict.count }}</span> 评论</div>
+
+                <!-- 评论显示区 -->
+                <div class="vcards">
+                    {% for comment_id,comments in comments_dict.comments.items %}
+                        <div class="vcard" id="comment-{{ comment_id }}">
+                            <img class="vimg" src="{{ comments.comment.avatar }}">
+
+                            <div class="vh">
+                                <div class="vhead"><a class="vnick" rel="nofollow">{{ comments.comment.nick }}</a><span class="vsys">{{ comments.comment.browser }}</span><span class="vsys">{{ comments.comment.client }}</span></div>
+                                <div class="vmeta">
+                                    <span class="vtime">{{ comments.comment.add_time | date:'Y-m-d  H:i:s' }}</span>
+                                    <span class="vat reply_btn">回复</span>
+                                </div>
+                                <div class="vreply-wrapper" parent-id="{{ comment_id }}" reply-id="{{ comment_id }}"></div>
+                                <div class="vcontent"><p>{{ comments.comment.content | safe }}</p></div>
+
+                                <!-- 子评论 -->
+                                <div class="vquote">
+                                    {% for reply in comments.reply %}
+                                    <div class="vcard" id="comment-{{ reply.id }}">
+                                        <img class="vimg" src="{{ reply.avatar }}">
+                                        <div class="vh">
+                                            <div class="vhead"><span class="vnick">{{ reply.nick }}</span> <span class="vsys">{{ reply.browser }}</span> <span class="vsys">{{ reply.client }}</span></div>
+                                            <div class="vmeta">
+                                                <span class="vtime">{{ reply.add_time | date:'Y-m-d H:i:s' }}</span>
+                                                <span class="vat reply_btn">回复</span>
+                                            </div>
+                                            <div class="vreply-wrapper"  parent-id="{{ comment_id }}" reply-id="{{ reply.id }}"></div>
+                                            <div class="vcontent"><p><a href="#comment-{{ reply.reply_id }}" target="_self" rel="nofollow">@{{ reply.to_nick }} </a>, {{ reply.content | safe }}</p></div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </section>
+    </section>
+</article>
+<script type="text/javascript" src="{% static 'js/comment.js' %}"></script>

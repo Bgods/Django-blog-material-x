@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}{{ SITE_CONFIGS.Name }} - 所有归档{% endblock %}
+
+{% block l_main %}
+
+<div class="l_main">
+    <article id="post" class="post white-box article-type-post">
+        <section class="article typo">
+            <div class="article-entry" itemprop="articleBody" id="article_content">
+            {% for key, post_list in post_dict.items %}
+                <h2 class="h2-show-hide"><i class="fas fa-caret-down fa-fw" aria-hidden="true"></i>{{ key }}</h2>
+                <ol style="padding-left:20px"><hr>
+                {% for post in post_list %}
+                    <div class="archive-item archive-post mark" style="padding: .5em;">
+                        <li>
+                            <a href="{{ post.get_absolute_url }}" style="color: #444444">
+                                <span class="title">{{ post.title }}&nbsp&nbsp</span>
+                                <time><i class="fas fa-clock" aria-hidden="true"></i>{{ post.created_time | date:'Y-m-d' }}</time>
+                            </a>
+                        </li>
+                    </div>
+                {% endfor %}
+                </ol>
+            {% empty %}
+                无教程系列文章!
+            {% endfor %}
+            </div>
+        </section>
+    </article>
+</div>
+
+
+{% endblock %}

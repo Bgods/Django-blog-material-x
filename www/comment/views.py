@@ -5,33 +5,23 @@ from django.shortcuts import redirect
 from django.views import View
 from django.core.mail import EmailMultiAlternatives
 import re
-from www.settings import HTTP_HOST, EMAIL_RECEIVE_LIST, EMAIL_HOST_USER
+from www.settings import EMAIL_RECEIVE_LIST, EMAIL_HOST_USER
 
 
 class CommentView(View):
     #  处理POST请求
-    def post(self, request):
+    def post(self, request, post_id):
         comment = Comment()  # 实例化类
-        comment.post_id = request.POST['post_id']
+        comment.post_id = post_id
         comment.parent_id = request.POST['parent_id']
         comment.reply_id = request.POST['reply_id']
         comment.nick = request.POST['nick']
         comment.mail = request.POST['mail']
         comment.content = request.POST['content']
-        ua = request.META.get('HTTP_USER_AGENT', '')
 
-        # 从请求头中匹配客户端及浏览器
-        browser = re.findall(r'([a-z]+/[0-9\.]+)[a-z ]*Safari/[0-9\.]+$', ua, re.I)
-        if browser:
-            comment.browser = browser[0]
-        else:
-            comment.browser = 'Unknown Browser'
-
-        client = re.findall(r'Mozilla/5.0 \((.*?)\)', ua, re.I)
-        if client:
-            comment.client = client[0]
-        else:
-            comment.client = 'Unknown Client'
+        ua = parse_user_agent(request.META.get('HTTP_USER_AGENT', ''))  # 解析HTTP_USER_AGENT
+        comment.browser = ua['browser']
+        comment.client = ua['client']
 
         # 处理回复评论
         if request.POST['reply_id'] != '0':
@@ -51,20 +41,25 @@ class CommentView(View):
 
         comment.save()  # 保存评论数据到数据库
 
-        redirect_url = HTTP_HOST + request.POST['redirect_url'] + '#comment-{0}'.format(comment.id)
+        redirect_url = request.POST['redirect_url'] + '#comment-{0}'.format(comment.id)
         if recipient_list:  # 发送邮件
             try:
-                send_email(url=redirect_url, recipient_list=recipient_list)
+                send_email(url=redirect_url, recipient_list=recipient_list, post_id=post_id)
             except BaseException as e:
                 print('发送邮件错误: {}'.format(e))
-        return redirect(request.POST['redirect_url'])  # 重定向到指定页面
+        return redirect(redirect_url)  # 重定向到指定页面
 
     def get(self, request):
         pass
 
 
-# 发送邮件
-def send_email(url, recipient_list):
+def send_email(url, recipient_list, post_id):
+    """
+    发送邮件
+    :param url: 评论内容链接
+    :param recipient_list: 邮件接收人
+    :return: None
+    """
     subject = '来自博客的留言'   # 邮件主题
     html_content = '<p>你好，你在博客中的留言有了新的回复内容! <a href="{0}" target="_blank">点击查看</a></p>'.format(url)  # 邮件正文
     msg = EmailMultiAlternatives(
@@ -76,3 +71,26 @@ def send_email(url, recipient_list):
 
     msg.attach_alternative(html_content, "text/html")
     msg.send()  # 发送
+
+
+# 解析User-Agent
+def parse_user_agent(user_agent):
+    browser = re.findall(r'([a-z]+/[0-9\.]+)[a-z ]*Safari/[0-9\.]+$', user_agent, re.I)
+    if browser:
+        browser = browser[0]
+
+    else:
+        browser = 'Unknown Browser'
+
+    client = re.findall(r'^[a-z]+/\d*.?\d* \((.*?)\)', user_agent, re.I)
+    if client:
+        client = client[0]
+    else:
+        client = 'Unknown Client'
+
+    return {
+        'browser': browser,
+        'client': client
+    }
+
+

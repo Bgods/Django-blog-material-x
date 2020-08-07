@@ -22,7 +22,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'simpleui',  # 注册后台管理simpleui
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,7 +31,8 @@ INSTALLED_APPS = [
 
     'blog.apps.BlogConfig',  # 注册app应用
     'comment.apps.CommentConfig',  # 注册app应用
-    'mdeditor',  # 注册富文本编辑器
+    'ckeditor',  # 注册富文本编辑器
+    'ckeditor_uploader',  # 上传文件
 ]
 
 MIDDLEWARE = [
@@ -69,23 +69,23 @@ WSGI_APPLICATION = 'www.wsgi.application'
 
 # Database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': '数据库',
-#         'USER': '用户名',
-#         'PASSWORD': '密码',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bg_blog',
+        'USER': 'root',
+        'PASSWORD': 'root123',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 
@@ -127,51 +127,64 @@ MEDIA_URL = '/media/'
 # 放在django项目根目录，同时也需要创建media文件夹
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# mdeditor markdown编辑器配置
-MDEDITOR_CONFIGS = {
+CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+# CKEDITOR编辑器配置
+CKEDITOR_CONFIGS = {
+    # 配置名是default时，django-ckeditor默认使用这个配置
     'default': {
-    'width': '90%',  # 自定义编辑框宽度
-    'heigth': 500,   # 自定义编辑框高度
-    'toolbar': ["undo", "redo", "|",
-                "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                "h1", "h2", "h3", "h5", "h6", "|",
-                "list-ul", "list-ol", "hr", "|",
-                "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
-                "emoji", "html-entities", "pagebreak", "goto-line", "|",
-                "help", "info",
-                "||", "preview", "watch", "fullscreen"],  # 自定义编辑框工具栏
-    'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # 图片上传格式类型
-    'image_floder': 'editor',  # 图片保存文件夹名称
-    'theme': 'default',  # 编辑框主题 ，dark / default
-    'preview_theme': 'default',  # 预览区域主题， dark / default
-    'editor_theme': 'default',  # edit区域主题，pastel-on-dark / default
-    'toolbar_autofixed': True,  # 工具栏是否吸顶
-    'search_replace': True,  # 是否开启查找替换
-    'emoji': True,  # 是否开启表情功能
-    'tex': True,  # 是否开启 tex 图表功能
-    'flow_chart': True,  # 是否开启流程图功能
-    'sequence': True  # 是否开启序列图功能
+        # 使用简体中文
+        'language': 'zh-cn',
+        # 编辑器的宽高请根据你的页面自行设置
+        'width': 'auto',
+        'height': '400px',
+        'image_previewText': ' ',
+        'tabSpaces': 4,
+        'toolbar': (
+            ['div', 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+            ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+            ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+
+            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Blockquote', 'CodeSnippet'],
+            ['Maximize', 'ShowBlocks', '-', 'About', 'pbckcode'],
+        ),
+        # 添加按钮在这里
+        'toolbar_Custom': [],
+        # 插件
+        'extraPlugins': ','.join(['codesnippet', 'uploadimage', 'widget', 'lineutils', 'prism', 'clipboard', ]),
     },
 
-    'form_config': {
-        'width': '70%',  # 自定义编辑框宽度
-        'heigth': 500,   # 自定义编辑框高度
-        'toolbar': ["undo", "redo", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table",
-                    "emoji",  "|",
-                    "help", "info", "preview", "watch", "fullscreen"],  # 自定义编辑框工具栏
-        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # 图片上传格式类型
-        'image_floder': 'editor',  # 图片保存文件夹名称
-        'theme': 'dark',  # 编辑框主题 ，dark / default
-        'preview_theme': 'default',  # 预览区域主题， dark / default
-        'editor_theme': 'default',  # edit区域主题，pastel-on-dark / default
-        'toolbar_autofixed': True,  # 工具栏是否吸顶
-        'search_replace': True,  # 是否开启查找替换
-        'emoji': True,  # 是否开启表情功能
-        'tex': True,  # 是否开启 tex 图表功能
-        'flow_chart': True,  # 是否开启流程图功能
-        'sequence': True  # 是否开启序列图功能
-        },
-
+    # 评论富文本编辑器
+    'comment': {
+        # 使用简体中文
+        'language': 'zh-cn',
+        # 编辑器的宽高请根据你的页面自行设置
+        'width': 'auto',
+        'height': '300px',
+        'image_previewText': ' ',
+        'tabSpaces': 4,
+        'toolbar': (
+            ['Smiley', 'CodeSnippet'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'],
+            ['About']
+        ),
+        # 添加按钮在这里
+        'toolbar_Custom': [],
+        # 插件
+        'extraPlugins': ','.join(['codesnippet', 'widget', 'lineutils', 'prism', 'clipboard']),
+    }
 }
 
 # 站点配置
@@ -188,7 +201,6 @@ SITE_CONFIGS = {
         'GitHub': 'https://github.com/Bgods', # GitHub
         'Beian': '粤ICP备17050010号', # 备案号
     },
-
 
     # 百度统计,代码获取方法自行百度,不需要的话可以留空
     'BaiduTj': '''
@@ -211,7 +223,6 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'bgods_blog@163.com'  # 邮箱帐号：用于发送邮件的账号
 EMAIL_HOST_PASSWORD = '******'        # 邮箱密码：用于发送邮件的账号密码
 DEFAULT_FROM_EMAIL = 'bgods_blog <bgods_blog@163.com>'   # 发件人，邮件头部显示
-HTTP_HOST = 'http://bgods.cn'  # 正式部署时站点域名，用于评论回复发送邮件时，收件人从邮件中的跳转到评论区。我这里是http://bgods.cn
 
 EMAIL_RECEIVE_LIST = [
     'bgods@qq.com',

@@ -3,6 +3,7 @@
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post, Tag
 from comment.models import Comment
+from comment.forms import CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.db.models.aggregates import Count
@@ -22,7 +23,7 @@ def comment_reply_content(post_id):
                 'id': comment.pk,
                 'post_id': comment.post_id,
                 'add_time': comment.add_time,
-                'content': comment.get_markdown_content()['body'],
+                'content': comment.content,
                 'parent_id': comment.parent_id,
                 'reply_id': comment.reply_id,
                 'nick': comment.nick,
@@ -40,7 +41,7 @@ def comment_reply_content(post_id):
                 'id': reply.pk,
                 'post_id': reply.post_id,
                 'add_time': reply.add_time,
-                'content': reply.get_markdown_content()['body'],
+                'content': reply.content,
                 'parent_id': reply.parent_id,
                 'reply_id': reply.reply_id,
                 'nick': reply.nick,
@@ -67,18 +68,14 @@ class Index(object):
 
     def tags(self, request, tag):
         # 标签：按照标签(tag)查询Post表中的文章列表
-        post_list = Post.objects.filter(tags__name=tag,is_show=True,post_type='post')
+        post_list = Post.objects.filter(tags__name=tag, is_show=True, post_type='post')
         page = request.GET.get('page')
         return self.get_data(post_list=post_list, page=page, request=request)
 
     def get_data(self,post_list, page, request):
         post_list = self.Pagination(post_list=post_list, page=page)
-        for i in range(len(post_list)):
-            markdown_content = post_list[i].get_markdown_content()
-            post_list[i].body = markdown_content['body']
-            post_list[i].toc = markdown_content['toc']
-
-        return render(request, 'blog/index.html', context={'post_list':post_list})
+        post_type = 'post'
+        return render(request, 'blog/index.html', context={'post_list': post_list, 'post_type': post_type})
 
     # 高级分页扩展函数
     def Pagination(self, post_list, page):
@@ -96,12 +93,29 @@ class Index(object):
 # 博客详情页
 def Detail(request, pk):
     post = get_object_or_404(Post, pk=pk, is_show=True, post_type='post')
-    markdown_content = post.get_markdown_content()
-    post.body = markdown_content['body']
-    post.toc = markdown_content['toc']
     post.increase_views()  # 调用 increase_views 方法，统计访问量
     comments_dict = comment_reply_content(post_id=pk)  # 评论回复
-    return render(request, 'blog/detail.html', context={'post': post, 'comments_dict': comments_dict})
+    comment_form = CommentForm()  # 引入评论表单
+    context = {
+        'post': post,
+        'comments_dict': comments_dict,
+        'comment_form': comment_form,
+    }
+    return render(request, 'blog/detail.html', context=context)
+
+
+# 教程
+def Tutorial(request):
+    # 获取教程类型博文列表
+    post_list = Post.objects.filter(is_show=True, post_type='post', tutorial__name__isnull=False).order_by('created_time')
+
+    # 创建一个 dict, 以教程名称为关键字保存
+    post_dict = {}
+    for post in post_list:
+        if post.tutorial not in post_dict.keys():
+            post_dict[post.tutorial] = []
+        post_dict[post.tutorial].append(post)
+    return render(request, 'blog/tutorials.html', context={'post_dict': post_dict})
 
 
 # 归档页面
@@ -114,34 +128,40 @@ def Archives(request):
 # 标签页面
 def Tags(request):
     # 使用 Count 方法统计文章数，并保存到 num_posts 属性中
-    tags = Tag.objects.filter(post__is_show=True,post__post_type='post').annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')
+    tags = Tag.objects.filter(post__is_show=True, post__post_type='post').annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')
     return render(request, 'blog/tags.html', context={'tags': tags})
 
 
 # 关于页面
 def About(request):
-    post = Post.objects.filter(post_type='about').first()
+    post = Post.objects.filter(is_show=True, post_type='about').first()
     if post:
-        markdown_content = post.get_markdown_content()
-        post.body = markdown_content['body']
-        post.toc = markdown_content['toc']
         post.increase_views()  # 调用 increase_views 方法，统计访问量
         comments_dict = comment_reply_content(post_id=post.id)  # 评论回复
-        return render(request, 'blog/about.html', context={'post': post, 'comments_dict': comments_dict})
+        comment_form = CommentForm()  # 引入评论表单
+        context = {
+            'post': post,
+            'comments_dict': comments_dict,
+            'comment_form': comment_form,
+        }
+        return render(request, 'blog/about.html', context=context)
     else:
         return page_not_found(request)
 
 
 # 我的项目
 def Project(request):
-    post = Post.objects.filter(post_type='project').first()
+    post = Post.objects.filter(is_show=True, post_type='project').first()
     if post:
-        markdown_content = post.get_markdown_content()
-        post.body = markdown_content['body']
-        post.toc = markdown_content['toc']
         post.increase_views()  # 调用 increase_views 方法，统计访问量
         comments_dict = comment_reply_content(post_id=post.id)  # 评论回复
-        return render(request, 'blog/project.html', context={'post': post, 'comments_dict': comments_dict})
+        comment_form = CommentForm()  # 引入评论表单
+        context = {
+            'post': post,
+            'comments_dict': comments_dict,
+            'comment_form': comment_form,
+        }
+        return render(request, 'blog/project.html', context=context)
     else:
         return page_not_found(request)
 
@@ -160,6 +180,6 @@ def search(request):
                 "permalink": post.get_absolute_url(),
                 "text": post.body
             },)
-        return HttpResponse(json.dumps(data,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        return HttpResponse(json.dumps(data,ensure_ascii=False), content_type="application/json,charset=utf-8")
     else:
         pass
