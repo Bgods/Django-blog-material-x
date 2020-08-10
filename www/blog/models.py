@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from django.db.models import Q
 
 
 # Create your models here.
@@ -51,6 +51,14 @@ class Post(models.Model):
     views = models.PositiveIntegerField(default=0, verbose_name=u'访问量')  # 文章访问量
     is_top = models.BooleanField(default=False, verbose_name=u'顶置文章')  # 文章是否顶置，默认不顶置
     is_show = models.BooleanField(default=True, verbose_name=u'发布状态')    # 文章发布状态，默认是创建成功就发布
+
+    def get_next_field_by_created_time(self):  # 获取下一页
+        post = Post.objects.filter(~Q(pk=self.pk), is_show=True, post_type='post', created_time__gte=self.created_time).order_by('created_time').first()
+        return post
+
+    def get_previous_field_by_created_time(self):
+        post = Post.objects.filter(~Q(pk=self.pk), is_show=True, post_type='post', created_time__lte=self.created_time).order_by('-created_time').first()
+        return post
 
     def __str__(self):
         return self.title

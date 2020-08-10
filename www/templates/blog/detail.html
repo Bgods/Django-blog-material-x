@@ -36,17 +36,17 @@
             </section>
 
             <div class="prev-next">
-                {% if post.get_previous_by_created_time %}
+                {% if post.get_previous_field_by_created_time %}
                 <section class="prev">
                     <span class="art-item-left">
-                        <h4><a href="{{ post.get_previous_by_created_time.get_absolute_url }}" rel="prev" title="{{ post.get_previous_by_created_time.title }}"><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp; {{ post.get_previous_by_created_time.title }}</a></h4>
+                        <h4><a href="{{ post.get_previous_field_by_created_time.get_absolute_url }}" rel="prev" title="{{ post.get_previous_field_by_created_time.title }}"><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp; {{ post.get_previous_field_by_created_time.title }}</a></h4>
                     </span>
                 </section>
                 {% endif %}
-                {% if post.get_next_by_created_time %}
+                {% if post.get_next_field_by_created_time %}
                 <section class="next">
                     <span class="art-item-right" aria-hidden="true">
-                        <h4><a href="{{ post.get_next_by_created_time.get_absolute_url }}" rel="prev" title="{{ post.get_next_by_created_time.title }}">{{ post.get_next_by_created_time.title }}&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></a></h4>
+                        <h4><a href="{{ post.get_next_field_by_created_time.get_absolute_url }}" rel="prev" title="{{ post.get_next_field_by_created_time.title }}">{{ post.get_next_field_by_created_time.title }}&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></a></h4>
                     </span>
                 </section>
                 {% endif %}
