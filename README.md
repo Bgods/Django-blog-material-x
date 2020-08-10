@@ -47,11 +47,10 @@
 
 ## 2、后台管理
 
-使用[simpleui](https://github.com/newpanjing/simpleui)第三方后台管理工具，特色如下：
 
 - 编辑器
 
-后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，
+后台集成富文本编辑器 [ckeditor](https://github.com/django-ckeditor/django-ckeditor)
 
 ![](doc/admin-post-add_20190426204956161746_20200628202421166552.png)
 
@@ -77,6 +76,7 @@
 
 ![](doc/20200628195857_20200628202648432891.png)
 
+---
 
 ## 使用方法
 
@@ -107,7 +107,6 @@ SITE_CONFIGS = {
         'Beian': '粤ICP备17050010号', # 备案号
     },
 
-
     # 百度统计,代码获取方法自行百度,不需要的话可以留空
     'BaiduTj': '''
     <script>
@@ -119,18 +118,23 @@ SITE_CONFIGS = {
         s.parentNode.insertBefore(hm, s);
     })();
     </script>''',
+
 }
 
 #  邮箱配置
 EMAIL_USE_SSL = True
-EMAIL_HOST = 'smtp.163.com'  # 我这里使用的是163邮箱，可以配置其他QQ等
+EMAIL_HOST = 'smtp.163.com'  # 我这里使用的是163邮箱，可以配置其他
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'bgods_blog@163.com'  # 邮箱帐号
-EMAIL_HOST_PASSWORD = '******'  # 邮箱密码
+EMAIL_HOST_USER = 'bgods_blog@163.com'  # 邮箱帐号：用于发送邮件的账号
+EMAIL_HOST_PASSWORD = '******'        # 邮箱密码：用于发送邮件的账号密码
 DEFAULT_FROM_EMAIL = 'bgods_blog <bgods_blog@163.com>'   # 发件人，邮件头部显示
-HTTP_HOST = 'http://bgods.cn'  # 正式部署时站点域名，用于评论回复发送邮件时，收件人从邮件中的跳转到评论区。我这里是http://bgods.cn
 
+EMAIL_RECEIVE_LIST = [
+    'bgods@qq.com',
+]  # 接收邮件帐号列表(可写多个)： 有评论时候，通知哪些邮箱，可以是发件邮箱或者其他
 ```
+当然, 还有其他配置, 比如后台管理以及评论内容编辑器的配置, 具体自己可以百度调整
+
 ### 3、安装依赖
 
 - 进入项目目录创建虚拟环境，安装依赖

@@ -12,6 +12,8 @@ $(document).ready(function() {
             }
         }
     });
+    // 如果h标签不存在, 则隐藏
+    if ($(".toc").html() === ''){$("section.toc-wrapper").hide();}
 
     // 展开和隐藏目录
     $('.toc-show-hide').click(function(){
