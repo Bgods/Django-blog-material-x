@@ -139,3 +139,33 @@ class SidebarMusic(models.Model):
     class Meta:
         verbose_name = u'侧边栏音乐配置'
         verbose_name_plural = u'侧边栏音乐配置'
+
+
+# 站点设置
+class SiteSettings(models.Model):
+    name = models.CharField(
+        max_length=20,
+        choices=(
+            ('sitename', u'站点名称'),
+            ('sitetitle', u'站点标题'),
+            ('email', u'我的邮箱'),
+            ('weibo', u'微博主页'),
+            ('music', u'我的音乐主页'),
+            ('twitter', u'Twitter'),
+            ('github', u'GitHub'),
+            ('beian', u'备案号'),
+            ('baidu_tj', u'百度统计代码'),
+        ),
+        unique=True,
+        verbose_name=u'名称'
+    )
+    value = models.TextField(verbose_name=u'值')
+    is_show = models.BooleanField(default=True, verbose_name=u'是否展示')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-name']
+        verbose_name = u'站点设置'
+        verbose_name_plural = u'站点设置'

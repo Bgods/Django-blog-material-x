@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from blog.models import Post, Tag, Links, Advertising, SidebarMusic
+from blog.models import Tag, Links, Advertising, SidebarMusic
 from django import template
 from django.db.models.aggregates import Count
-from www.settings import SITE_CONFIGS
-
+from blog.models import SiteSettings
 register = template.Library()
 
 
@@ -43,4 +42,8 @@ def get_music():
 # 站点配置
 @register.simple_tag
 def get_site_configs():
-    return SITE_CONFIGS
+    """
+    :return: dict
+    """
+    Settings = SiteSettings.objects.filter(is_show=True)
+    return {s.name: s.value for s in Settings}

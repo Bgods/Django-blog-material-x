@@ -1,9 +1,14 @@
 from django.contrib import admin
-from blog.models import Post, Tag, Links, Advertising, SidebarMusic, Tutorial
+from blog.models import Post, Tag, Links, Advertising, SidebarMusic, Tutorial, SiteSettings
 from django.utils.html import format_html
 
 
 # Register your models here.
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    list_display = ['name', 'value', 'is_show']
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name']

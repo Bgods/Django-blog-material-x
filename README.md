@@ -92,35 +92,6 @@ git clone https://github.com/Bgods/Django-blog-material-x.git
 
 修改 www/www/settings.py 文件
 ```python
-# 站点配置
-SITE_CONFIGS = {
-    'Name': 'Bgods', # 站点名称
-    'Title': '人生苦短,我用Python', # 站点标题
-
-    # 站点底部footer配置
-    'Footer': {
-        'Email': 'bgods@qq.com', # 邮箱
-        'Weibo': 'http://weibo.com/songzhilian22', # 新浪微博
-        'Music': 'https://music.163.com/#/user/home?id=1534745920', # 音乐地址
-        'Twitter': 'http://blog.csdn.net/songzhilian22', # Twitter
-        'GitHub': 'https://github.com/Bgods', # GitHub
-        'Beian': '粤ICP备17050010号', # 备案号
-    },
-
-    # 百度统计,代码获取方法自行百度,不需要的话可以留空
-    'BaiduTj': '''
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?你的ID";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-    </script>''',
-
-}
-
 #  邮箱配置
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.163.com'  # 我这里使用的是163邮箱，可以配置其他
