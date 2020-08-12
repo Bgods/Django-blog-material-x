@@ -13,14 +13,12 @@
                 <h2 class="h2-show-hide"><i class="fas fa-caret-down fa-fw" aria-hidden="true"></i>{{ key }}</h2>
                 <ol style="padding-left:20px"><hr>
                 {% for post in post_list %}
-                    <div class="archive-item archive-post mark" style="padding: .5em;">
-                        <li>
-                            <a href="{{ post.get_absolute_url }}" style="color: #444444">
-                                <span class="title">{{ post.title }}&nbsp&nbsp</span>
-                                <time><i class="fas fa-clock" aria-hidden="true"></i>{{ post.created_time | date:'Y-m-d' }}</time>
-                            </a>
-                        </li>
-                    </div>
+                    <li class="archive-item archive-post mark" style="padding: .5em;">
+                        <a href="{{ post.get_absolute_url }}" style="color: #444444">
+                            <span class="title">{{ post.title }}&nbsp&nbsp</span>
+                            <time><i class="fas fa-clock" aria-hidden="true"></i>{{ post.created_time | date:'Y-m-d' }}</time>
+                        </a>
+                    </li>
                 {% endfor %}
                 </ol>
             {% empty %}
