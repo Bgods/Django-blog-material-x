@@ -1,4 +1,31 @@
+// 生成从minNum到maxNum的随机数
+function randomNum(minNum,maxNum){
+    switch(arguments.length){
+        case 1:
+            return parseInt(Math.random()*minNum+1,10);
+        break;
+        case 2:
+            return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10);
+        break;
+            default:
+                return 0;
+            break;
+    }
+}
+
+// 随机取颜色
+function randomColor(){
+    const colors = ['#567e95', '#b37333', '#15a287', '#5cb85c', '#d9534f', '#b433ff', '#f60'];
+    return colors[Math.floor(Math.random()*colors.length)];
+}
+
 $(document).ready(function() {
+    // 随机改变热门标签样式
+    $('.tagcloud div a').each(function (index, element) {
+        $(this).attr("style", 'font-size:' + randomNum(14,25) + 'px;color:' + randomColor());
+        }
+    );
+
     // 生成目录
     $("#article_content").children().each(function(index, element) {
         var tagName=$(this).get(0).tagName;

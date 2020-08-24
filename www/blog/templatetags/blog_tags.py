@@ -10,15 +10,8 @@ register = template.Library()
 @register.simple_tag
 def get_tags():
     # 使用 Count 方法统计文章数，并保存到 num_posts 属性中
-    tags_style = [
-        "font-size:19px;color:#777",
-        "font-size:14px;color:#999",
-        "font-size:16.5px;color:#888",
-        "font-size:24px;color:#555",
-        "font-size:21.5px;color:#666"
-    ]
-    tags = Tag.objects.filter(post__is_show=True).annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')[:20]
-    return {'tags_style':tags_style, 'tags':tags}
+    tags = Tag.objects.filter(post__is_show=True, post__post_type='post').annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')
+    return {'tags':tags}
 
 
 # 获取友情链接

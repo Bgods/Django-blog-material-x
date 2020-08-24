@@ -31,7 +31,6 @@
             <ol class="toc"></ol>
         </div>
     </section>
-    <script src="{% static 'js/toc.js' %}"></script>
 
     <!-- 侧边栏广告栏插件 -->
     <section class="plain">
@@ -54,7 +53,7 @@
         <div class="content pure">
             {% get_tags as tags_list %}
             {% for tag in tags_list.tags %}
-            <a href="{% url 'blog:tags' tag.name %}" style="{{ tags_list.tags_style | random }}">{{ tag.name }}</a>
+            <a href="{% url 'blog:tags' tag.name %}" style="" title="{{ tag.num_posts }}个话题">{{ tag.name }}({{ tag.num_posts }})</a>
             {% empty %}
                 <a></a>
             {% endfor %}
@@ -93,4 +92,4 @@
     </section>
     {% endif %}
 </aside>
-
+<script src="{% static 'js/aside.js' %}"></script>

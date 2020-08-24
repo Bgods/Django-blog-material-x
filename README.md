@@ -4,7 +4,7 @@
 
 ## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，使用 Python3.6.3+Django3.0.7编写，后台集成Markdown编辑器 [mdeditor](https://pandao.github.io/editor.md/)，前端代码高亮使用的是highlight.js插件。
+本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，使用 Python3.6.3+Django3.0.7编写，后台集成富文本编辑器 [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor)，前端代码高亮使用的是highlight.js插件。
 有疑问，或者建议可到[我的博客](http://bgods.cn/)下留言。
 
 ## 1、页面
@@ -40,7 +40,7 @@
 
 - 评论
 
-评论区支持 Markdown 语法，评论支持邮箱通知
+评论区支持富文本编辑器 [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor)，评论支持邮箱通知
 
 ![](doc/20200628201112_20200628201129280228.png)
 
@@ -50,7 +50,7 @@
 
 - 编辑器
 
-后台集成富文本编辑器 [ckeditor](https://github.com/django-ckeditor/django-ckeditor)
+后台集成富文本编辑器 [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor)
 
 ![](doc/admin-post-add_20190426204956161746_20200628202421166552.png)
 

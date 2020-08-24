@@ -112,6 +112,7 @@ class SidebarMusic(models.Model):
     server = models.CharField(
         max_length=20,
         choices=(('netease', u'网易云音乐'), ('tencent', u'QQ音乐'), ('xiami', u'虾米'), ('kugou', u'酷狗')),
+        unique=True,
         default='netease',
         verbose_name=u'平台'
     )

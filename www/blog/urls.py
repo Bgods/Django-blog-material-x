@@ -7,7 +7,6 @@ app_name = 'blog'
 
 urlpatterns = [
     path('', BlogViews.Index().index, name='Index'),
-    path('tags/', BlogViews.Tags, name='Tags'),
     path('archives/', BlogViews.Archives, name='Archives'),
     path('tutorial/', BlogViews.Tutorial, name='Tutorial'),
     path('about/', BlogViews.About, name='About'),

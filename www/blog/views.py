@@ -125,13 +125,6 @@ def Archives(request):
     return render(request, 'blog/archives.html', context={'years': years, 'post_list':post_list})
 
 
-# 标签页面
-def Tags(request):
-    # 使用 Count 方法统计文章数，并保存到 num_posts 属性中
-    tags = Tag.objects.filter(post__is_show=True, post__post_type='post').annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')
-    return render(request, 'blog/tags.html', context={'tags': tags})
-
-
 # 关于页面
 def About(request):
     post = Post.objects.filter(is_show=True, post_type='about').first()
