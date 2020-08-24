@@ -4,8 +4,11 @@
 
 ## 说明
 
-本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，使用 Python3.6.3+Django3.0.7编写，后台集成富文本编辑器 [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor)，代码高亮使用 [Prism](https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript)插件，可选择自己喜欢的样式，替换静态文件中的highlight\prism.css文件即可。
-有疑问，或者建议可到[我的博客](http://bgods.cn/)下留言。
+- 本站是基于的Hexo博客主题 [Material X](https://xaoxuu.com/projects/#Material-X) ，使用 Python3.6.3+Django3.0.7编写;
+- 后台集成富文本编辑器 [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor);
+- 代码高亮使用 [Prism](https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript)插件，可选择自己喜欢的样式，替换静态文件中的highlight\prism.css文件即可;
+
+有疑问，或者建议欢迎到[我的博客](http://bgods.cn/)下留言。
 
 ## 1、页面
 
